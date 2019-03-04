@@ -30,7 +30,7 @@ public class User {
 	private String password;
 	
 	@Transient
-	private String repassword;
+	private String passwordConfirm;
 	private double money;
 	private boolean valid;
 	
@@ -91,12 +91,12 @@ public class User {
 		this.password = password;
 	}
 
-	public String getRepassword() {
-		return repassword;
+	public String getPasswordConfirm() {
+		return passwordConfirm;
 	}
 
-	public void setRepassword(String repassword) {
-		this.repassword = repassword;
+	public void setPasswordConfirm(String repassword) {
+		this.passwordConfirm = repassword;
 	}
 
 	public double getMoney() {
@@ -171,7 +171,7 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", email=" + email + ", name=" + name
 				+ ", surname=" + surname + ", password=" + password
-				+ ", repassword=" + repassword + ", money=" + money + ", valid="
+				+ ", repassword=" + passwordConfirm + ", money=" + money + ", valid="
 				+ valid + ", role=" + role + ", publishedSales="
 				+ publishedSales + ", boughtSales=" + boughtSales + "]";
 	}
