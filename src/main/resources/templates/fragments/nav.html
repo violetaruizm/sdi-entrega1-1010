@@ -15,22 +15,21 @@
 
 				<li><a href="/" sec:authorize="isAuthenticated()">Home</a></li>
 				<li id="marks-menu" class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#" sec:authorize="isAuthenticated()">
-						Gestión de notas <span class="caret"></span>
+					data-toggle="dropdown" href="#" sec:authorize="isAuthenticated()" th:text="#{nav.salesmgmt.message}">
+						<span class="caret"></span>
 				</a>
 					<ul class="dropdown-menu">
 						<li sec:authorize="hasRole('ROLE_PROFESSOR')"><a
-							href="/mark/add">Agregar Nota</a></li>
-						<li><a href="/mark/list">Ver Notas</a></li>
+							href="/mark/add" th:text="#{nav.sales.new.message}"></a></li>
+						<li><a href="/mark/list" th:text="#{nav.sales.all.message}"></a></li>
 					</ul></li>
 				<li id="users-menu" class="dropdown"><a
 					class="dropdown-toggle" data-toggle="dropdown"
-					sec:authorize="hasRole('ROLE_ADMIN')" href="#"> Gestión
-						de Usuarios <span class="caret"></span>
+					sec:authorize="hasRole('ROLE_ADMIN')" href="#" th:text="#{nav.usermgmt.message}">  <span class="caret"></span>
 				</a>
 					<ul class="dropdown-menu">
-						<li><a href="/user/add">Agregar usuario</a></li>
-						<li><a href="/user/list">Ver Usuarios</a></li>
+						<li><a href="/user/add" th:text="#{nav.user.add.message}"></a></li>
+						<li><a href="/user/list" th:text="#{nav.user.all.message}"></a></li>
 					</ul></li>
 
 
@@ -63,7 +62,7 @@
 							class="glyphicon glyphicon-log-in"></span> Identifícate
 					</a></li>
 					<li sec:authorize="isAuthenticated()"><a href="/logout"> <span
-							class="glyphicon glyphicon-log-out"></span> Desconectar
+							class="glyphicon glyphicon-log-out" th:text="#{disconnect.message}"></span> Desconectar
 					</a></li>
 				</ul>
 		</div>
