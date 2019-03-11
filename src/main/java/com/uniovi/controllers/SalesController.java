@@ -77,6 +77,17 @@ public class SalesController {
 		idsSale.forEach(id -> salesService.deleteSale(id));
         return "redirect:/sale/list?succesful";
 }
+	
+	@RequestMapping(value = "/sale/bought", method= RequestMethod.GET)
+	public String getListadoCompradas(Model model) {
+		Authentication auth = SecurityContextHolder.getContext()
+				.getAuthentication();
+		String email = auth.getName();
+		User activeUser = userService.getUser(email);
+		System.out.println(salesService.getSalesByBuyer(activeUser).size());
+		model.addAttribute("salesList", salesService.getSalesByBuyer(activeUser));
+		return "sale/boughtList";
+}
 
 
 }
