@@ -10,7 +10,7 @@ import com.uniovi.entities.types.Role;
 
 public interface SalesRepository extends JpaRepository<Sale, Long> {
 	
-	 List<Sale> findByBuyer(User buyer);
-	 List<Sale> findByOwner(User owner);
+	 List<Sale> findByBuyerAndValid(User buyer,boolean valid);
+	 List<Sale> findByOwnerAndValid(User owner,boolean valid);
 
 }

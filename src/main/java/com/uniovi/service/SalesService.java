@@ -23,13 +23,13 @@ public class SalesService {
 	private SalesRepository salesRepository;
 
 	public List<Sale> getSalesByOwner(User owner) {
-		List<Sale> sales = salesRepository.findByOwner(owner);
+		List<Sale> sales = salesRepository.findByOwnerAndValid(owner,true);
 
 		return sales;
 	}
 
 	public List<Sale> getSalesByBuyer(User buyer) {
-		List<Sale> sales = salesRepository.findByOwner(buyer);
+		List<Sale> sales = salesRepository.findByBuyerAndValid(buyer,true);
 
 		return sales;
 	}
@@ -59,8 +59,11 @@ public class SalesService {
 		salesRepository.save(sale);
 	}
 
-	public void deleteMark(Long id) {
-		salesRepository.getOne(id).setValid(false);
+	public void deleteSale(Long id) {
+		Sale sale = salesRepository.getOne(id);
+		sale.setValid(false);
+		salesRepository.save(sale);
 	}
+	
 
 }
