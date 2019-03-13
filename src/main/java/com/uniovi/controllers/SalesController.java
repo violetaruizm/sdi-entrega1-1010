@@ -1,5 +1,6 @@
 package com.uniovi.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.joda.time.LocalDateTime;
@@ -88,6 +89,19 @@ public class SalesController {
 		model.addAttribute("salesList", salesService.getSalesByBuyer(activeUser));
 		return "sale/boughtList";
 }
+	
+	
+	@RequestMapping("/sale/all")
+	public String getList(Model model, Principal principal,
+	@RequestParam(value = "", required=false) String searchText){
+	String email = principal.getName(); // DNI es el name de la autenticación
+	User user = userService.getUser(email);
+	if(user!=null) {
+	model.addAttribute("salesList",
+			salesService.searchSalesByTitle(searchText, email) );}
+	
+	return "sale/allSalesList";
+	}
 
 
 }

@@ -1,5 +1,6 @@
 package com.uniovi.service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -23,13 +24,13 @@ public class SalesService {
 	private SalesRepository salesRepository;
 
 	public List<Sale> getSalesByOwner(User owner) {
-		List<Sale> sales = salesRepository.findByOwnerAndValid(owner,true);
+		List<Sale> sales = salesRepository.findByOwnerAndValid(owner, true);
 
 		return sales;
 	}
 
 	public List<Sale> getSalesByBuyer(User buyer) {
-		List<Sale> sales = salesRepository.findByBuyerAndValid(buyer,true);
+		List<Sale> sales = salesRepository.findByBuyerAndValid(buyer, true);
 
 		return sales;
 	}
@@ -64,6 +65,18 @@ public class SalesService {
 		sale.setValid(false);
 		salesRepository.save(sale);
 	}
-	
+
+	public List<Sale> searchSalesByTitle(String searchText,
+			String user) {
+		List<Sale> sales = new ArrayList<Sale>();
+		if(searchText != null && !searchText.isEmpty()) {
+		sales = salesRepository.searchByTitle(searchText, user);}
+		else {
+			sales = salesRepository.allSalesDifferentOwner( user);
+			
+		}
+		
+		return sales;
+	}
 
 }
