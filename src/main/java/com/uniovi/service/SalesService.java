@@ -69,6 +69,7 @@ public class SalesService {
 	public List<Sale> searchSalesByTitle(String searchText,
 			String user) {
 		List<Sale> sales = new ArrayList<Sale>();
+
 //		if(searchText != null && !searchText.isEmpty()) {
 //		sales = salesRepository.searchByTitle(searchText, user);}
 //		else {
@@ -76,6 +77,7 @@ public class SalesService {
 //			
 //		}
 //		
+
 		return sales;
 	}
 
