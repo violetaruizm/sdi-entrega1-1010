@@ -2,38 +2,62 @@
 <html lang="en">
 <head th:replace="fragments/head" />
 <body>
+
 	<!-- Barra de Navegaci�n superior -->
 	<nav th:replace="fragments/nav" />
+
+
+
 	<div class="container">
-		<h2 th:text="#{list.title.sales}"></h2>
-		<p th:text="#{list.description.sales}"></p>
+		<h2 th:text=#{sales.all}></h2>
+		<form class="navbar-form" action="/sale/all">
+			<div class="form-group">
+				<input name="searchText" type="text" class="form-control" size="50"
+					th:placeholder="#{sales.search.ph}">
+			</div>
+			<button type="submit" class="btn btn-default" th:text=#{sales.search}></button>
+		</form>
+
+
+		<p th:text=#{sales.all.descrp}></p>
+
+		
+
+
+
 		<div class="table-responsive">
-		<div th:if="${param.succesful}" class="alert alert-dismissible alert-success" th:text="#{delete.succesful.list}"></div>
-			<form action="/sale/delete" method="post">
+
 			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th th:text="#{list.sale.title}"></th>
-						<th th:text="#{list.sale.description}"></th>
-						<th th:text="#{list.sale.price}"></th>
-						<th class="col-md-1"></th>
-						
-					</tr>
+				<tr>
+					<th class="col-md-1" th:text="#{list.sale.title}"></th>
+					<th th:text="#{list.sale.description}"></th>
+					<th th:text="#{list.sale.price}"></th>
+					<th class="col-md-1"></th>
+					<th class="col-md-1"></th>
+					<th class="col-md-1"></th>
+				</tr>
+
 				</thead>
 				<tbody>
 					<tr th:each="sale : ${salesList}">
-						<td th:text="${sale.title}">71888888X</td>
-						<td th:text="${sale.description}">Nombre del alumno</td>
-						<td th:text="${sale.price}">Apellidos del alumno</td>
-					<td><input type="checkbox" name="idsSale" th:value="${sale.id}"/></td>
-						
+						<td th:text="${sale.title}">1</td>
+						<td th:text="${sale.description}">Ejercicio 1</td>
+						<td th:text="${sale.price}">10</td>
+
+						<td>
+							<form method="get" th:attr="action=${'/sale/buy/' + sale.id}" th:if="${#strings.toString(sale.status)} == 'ONSALE' or ${#strings.toString(sale.status)} == 'HIGHLIGHTED'">
+								<input  type="submit" th:value="#{sale.buy}" />
+							</form> 
+							<span th:if="${#strings.toString(sale.status)} == 'SOLD'" th:text="#{sale.sold}">Vendida</span>
+						</td>
+
 					</tr>
 				</tbody>
 			</table>
-			<input type="submit" th:value="#{user.list.delete}"/>
-			
-			</form>
+			<div th:if="${param.error}" class="alert alert-dismissible alert-success" th:text="#{buy.error}"></div>
+			<div th:if="${param.success}" class="alert alert-dismissible alert-success" th:text="#{buy.sucess}"></div>
 		</div>
+		<!-- <div th:replace="fragments/pagination"></div>  -->
 	</div>
 	<footer th:replace="fragments/footer" />
 </body>

@@ -8,10 +8,13 @@ import java.util.Set;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.uniovi.entities.Sale;
 import com.uniovi.entities.User;
+import com.uniovi.entities.types.Status;
 import com.uniovi.repositories.SalesRepository;
 
 @Service
@@ -66,19 +69,31 @@ public class SalesService {
 		salesRepository.save(sale);
 	}
 
-	public List<Sale> searchSalesByTitle(String searchText,
-			String user) {
-		List<Sale> sales = new ArrayList<Sale>();
+	public Page<Sale> searchSalesByTitle(Pageable pageable,String searchText, User user) {
+		
 
-//		if(searchText != null && !searchText.isEmpty()) {
-//		sales = salesRepository.searchByTitle(searchText, user);}
-//		else {
-//			sales = salesRepository.allSalesDifferentOwner( user);
-//			
-//		}
-//		
+		if (searchText != null && !searchText.isEmpty()) {
+			searchText= "%"+searchText+"%";
+			return salesRepository.searchByTitle(searchText, user.getId(),pageable);
+		} else {
+			return salesRepository.findByDifferentOwner(user.getId(),pageable);
 
-		return sales;
+		}
+
+		
+	}
+
+	public boolean buySale(Long id, User user) {
+		Sale sale = salesRepository.getOne(id);
+		if(user.getMoney()>=sale.getPrice()) {
+			user.setMoney(user.getMoney()-sale.getPrice());
+			sale.setBuyer(user);
+			sale.setStatus(Status.SOLD);
+			salesRepository.save(sale);
+			return true;
+		} return false;
+		
+		
 	}
 
 }

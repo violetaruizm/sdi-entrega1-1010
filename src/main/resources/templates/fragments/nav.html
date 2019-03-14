@@ -53,6 +53,8 @@
 									th:text="#{language.es}">Español</span>
 							</a></li>
 						</ul></li>
+					
+					
 					<li sec:authorize="!isAuthenticated()"><a href="/signup"
 						th:text="#{signup.message}"> <span
 							class="glyphicon glyphicon-user"></span> Registrate
@@ -62,7 +64,7 @@
 							class="glyphicon glyphicon-log-in"></span> Identifícate
 					</a></li>
 					<li sec:authorize="isAuthenticated()"><a href="/logout"> <span
-							class="glyphicon glyphicon-log-out" th:text="#{disconnect.message}"></span> Desconectar
+							class="glyphicon glyphicon-log-out" th:text="#{disconnect.message}"></span> 
 					</a></li>
 				</ul>
 		</div>

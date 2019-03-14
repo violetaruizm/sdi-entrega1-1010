@@ -1,5 +1,12 @@
-
+<script src="/script/pagination.js"></script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var limit = /*[[${page.getTotalPages() - 1}]]*/ 1;
+    var pag = new Pagination(limit);
+    /*]]>*/
+</script>
 <ul class="pagination pagination-centered">
+
 	<!-- Primera -->
 	<li class="page-item"><a class="page-link" th:href="@{'?page=0'}">Primera</a>
 	</li>

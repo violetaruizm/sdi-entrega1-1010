@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.uniovi.entities.Sale;
 import com.uniovi.entities.User;
 import com.uniovi.entities.types.Role;
+import com.uniovi.entities.types.Status;
 
 @Service
 public class InsertDataService {
@@ -29,21 +30,23 @@ public class InsertDataService {
 		user.setValid(true);
 		usersService.addUser(user);
 		
-		
+	
 		User user1 = new User();
 		user1.setEmail("abc@gmail.com");
-		user1.setPassword("132245");
+		user1.setPassword("12345");
 		user1.setRole(Role.ROLE_STANDARD);
 		user1.setSurname("abc");
 		user1.setValid(true);
+		user1.setMoney(1000000);
 		usersService.addUser(user1);
 		
 		User user2 = new User();
 		user2.setEmail("def@gmail.com");
-		user2.setPassword("132245");
+		user2.setPassword("12345");
 		user2.setRole(Role.ROLE_STANDARD);
 		user2.setSurname("def");
 		user2.setValid(true);
+		user2.setMoney(20000000);
 		usersService.addUser(user2);
 		
 		Sale sale = new Sale();
@@ -51,14 +54,15 @@ public class InsertDataService {
 		sale.setOwner(user2);
 		sale.setPrice(10);
 		sale.setValid(true);
-		sale.setDescription("dhycghsd");
-		sale.setTitle("dkcsdjchsdj");
+		sale.setStatus(Status.SOLD);
+		sale.setDescription("dhyc ghsd");
+		sale.setTitle("dkcs djchsdj");
 		
 		Sale sale2 = new Sale();
-		sale2.setBuyer(user1);
 		sale2.setOwner(user2);
 		sale2.setPrice(100);
 		sale2.setValid(true);
+		sale2.setStatus(Status.ONSALE);
 		sale2.setDescription("dhycthtghsd");
 		sale2.setTitle("dkcsdgthgjchsdj");
 		
