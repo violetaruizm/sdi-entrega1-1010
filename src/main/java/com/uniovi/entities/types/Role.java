@@ -1,6 +1,6 @@
 package com.uniovi.entities.types;
 
 public enum Role {
-	ROLE_ADMIN,ROLE_STANDARD
+    ROLE_ADMIN, ROLE_STANDARD
 
 }

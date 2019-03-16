@@ -3,8 +3,7 @@ package com.uniovi.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,62 +17,56 @@ import com.uniovi.entities.User;
 import com.uniovi.entities.types.Role;
 import com.uniovi.service.SecurityService;
 import com.uniovi.service.UsersService;
-import com.uniovi.validators.LogInValidator;
+
 import com.uniovi.validators.SignUpFormValidator;
 
 @Controller
 public class UsersController {
 
-	@Autowired
-	private UsersService userService;
+    @Autowired
+    private UsersService userService;
 
-	@Autowired
-	private SecurityService securityService;
+    @Autowired
+    private SecurityService securityService;
 
-	@Autowired
-	private SignUpFormValidator signUpFormvalidator;
-	
-	@Autowired
-	private LogInValidator logInValidator;
+    @Autowired
+    private SignUpFormValidator signUpFormvalidator;
 
-	@RequestMapping(value = "/signup", method = RequestMethod.GET)
-	public String signup(Model model) {
-		model.addAttribute("user", new User());
-		return "signup";
+    @RequestMapping(value = "/signup", method = RequestMethod.GET)
+    public String signup(Model model) {
+	model.addAttribute("user", new User());
+	return "signup";
+    }
+
+    @PostMapping("/signup")
+    public String signup(@Validated User user, BindingResult result, Model model) {
+	signUpFormvalidator.validate(user, result);
+	if (result.hasErrors()) {
+	    return "signup";
 	}
+	user.setRole(Role.ROLE_STANDARD);
+	user.setMoney(100);
+	userService.addUser(user);
+	securityService.autoLogin(user.getEmail(), user.getPasswordConfirm());
+	return "redirect:home";
+    }
 
-	@PostMapping("/signup")
-	public String signup(@Validated User user, BindingResult result,
-			Model model) {
-		signUpFormvalidator.validate(user, result);
-		if (result.hasErrors()) {
-			return "signup";
-		}
-		user.setRole(Role.ROLE_STANDARD);
-		user.setMoney(100);
-		userService.addUser(user);
-		securityService.autoLogin(user.getEmail(), user.getPasswordConfirm());
-		return "redirect:home";
-	}
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login(Model model) {
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login(Model model) {
+	return "login";
+    }
 
-		return "login";
-	}
+    @RequestMapping("/user/list")
+    public String getListado(Model model) {
+	model.addAttribute("usersList", userService.getStandardUsers());
+	return "user/list";
+    }
 
-	
-	
-	
-	@RequestMapping("/user/list")
-	public String getListado(Model model) {
-		model.addAttribute("usersList", userService.getStandardUsers());
-		return "user/list";
-}
-	@PostMapping("/user/delete")
+    @PostMapping("/user/delete")
     public String deleteUsers(@RequestParam List<Long> idsUser) {
-        idsUser.forEach(id -> userService.deleteUser(id));
-        return "redirect:/user/list?succesful";
-}
+	idsUser.forEach(id -> userService.deleteUser(id));
+	return "redirect:/user/list?succesful";
+    }
 
 }

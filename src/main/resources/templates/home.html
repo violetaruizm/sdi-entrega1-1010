@@ -5,12 +5,15 @@
 	<nav th:replace="fragments/nav" />
 	<div class="container" style="text-align: center">
 		<h2 th:text="#{welcome.message}"></h2>
-		<h3>Esta es una zona privada la web</h3>
-		<p>
-			Usuario Autenticado como : <b th:inline="text" id = email> </b>
+		<h3 th:text="#{home.private.message}">Esta es una zona privada la web</h3>
+		<p >
+		<b sec:authorize="isAuthenticated()" th:inline="text" id=email th:text="#{home.message.authentication}"> </b>
+		 <b th:inline="text"  th:text=${email}> </b>
 		</p>
-		<p>
-			Saldo actual <b th:inline="text" id=money> </b>
+		<p sec:authorize="isAuthenticated() && hasRole('ROLE_STANDARD')">
+			
+			<b sec:authorize="isAuthenticated() && hasRole('ROLE_STANDARD')" th:inline="text" id=money th:text="#{home.money.message}"> </b>
+	 <b sec:authorize="isAuthenticated() && hasRole('ROLE_STANDARD')" th:inline="text" id=money th:text=${money1}> </b>
 		</p>
         </div>
 	<footer th:replace="fragments/footer" />

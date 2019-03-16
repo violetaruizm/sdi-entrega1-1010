@@ -17,164 +17,159 @@ import com.uniovi.entities.types.Role;
 
 @Entity
 public class User {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-	
-	@Column(unique = true)
-	private String email;
-	
-	private String name;
-	private String surname;
-	
-	private String password;
-	
-	@Transient
-	private String passwordConfirm;
-	private double money;
-	private boolean valid;
-	
-	@Enumerated(EnumType.STRING)
-	private Role role;
-	
-	@OneToMany(mappedBy = "owner")
-	private Set<Sale> publishedSales = new HashSet<Sale>();
-	
-	@OneToMany(mappedBy = "buyer")
-	private Set<Sale> boughtSales = new HashSet<Sale>();
-	
-	@OneToMany(mappedBy = "sender")
-	private Set<Message> sentMessages = new HashSet<Message>();
-	
-	@OneToMany(mappedBy = "receiver")
-	private Set<Message> receivedMessages = new HashSet<Message>();
-	
-	public User() {
-		
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
-	public long getId() {
-		return id;
-	}
+    @Column(unique = true)
+    private String email;
 
-	
+    private String name;
+    private String surname;
 
-	public String getEmail() {
-		return email;
-	}
+    private String password;
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    @Transient
+    private String passwordConfirm;
+    private double money;
+    private boolean valid;
 
-	public String getName() {
-		return name;
-	}
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    @OneToMany(mappedBy = "owner")
+    private Set<Sale> publishedSales = new HashSet<Sale>();
 
-	public String getSurname() {
-		return surname;
-	}
+    @OneToMany(mappedBy = "buyer")
+    private Set<Sale> boughtSales = new HashSet<Sale>();
 
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
+    @OneToMany(mappedBy = "sender")
+    private Set<Message> sentMessages = new HashSet<Message>();
 
-	public String getPassword() {
-		return password;
-	}
+    @OneToMany(mappedBy = "receiver")
+    private Set<Message> receivedMessages = new HashSet<Message>();
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public User() {
 
-	public String getPasswordConfirm() {
-		return passwordConfirm;
-	}
+    }
 
-	public void setPasswordConfirm(String repassword) {
-		this.passwordConfirm = repassword;
-	}
+    public long getId() {
+	return id;
+    }
 
-	public double getMoney() {
-		return money;
-	}
+    public String getEmail() {
+	return email;
+    }
 
-	public void setMoney(double money) {
-		this.money = money;
-	}
+    public void setEmail(String email) {
+	this.email = email;
+    }
 
-	public boolean isValid() {
-		return valid;
-	}
+    public String getName() {
+	return name;
+    }
 
-	public void setValid(boolean valid) {
-		this.valid = valid;
-	}
+    public void setName(String name) {
+	this.name = name;
+    }
 
-	public Role getRole() {
-		return role;
-	}
+    public String getSurname() {
+	return surname;
+    }
 
-	public void setRole(Role role) {
-		this.role = role;
-	}
+    public void setSurname(String surname) {
+	this.surname = surname;
+    }
 
-	public Set<Sale> getPublishedSales() {
-		return publishedSales;
-	}
+    public String getPassword() {
+	return password;
+    }
 
-	public void setPublishedSales(Set<Sale> publishedSales) {
-		this.publishedSales = publishedSales;
-	}
+    public void setPassword(String password) {
+	this.password = password;
+    }
 
-	public Set<Sale> getBoughtSales() {
-		return boughtSales;
-	}
+    public String getPasswordConfirm() {
+	return passwordConfirm;
+    }
 
-	public void setBoughtSales(Set<Sale> boughtSales) {
-		this.boughtSales = boughtSales;
-	}
+    public void setPasswordConfirm(String repassword) {
+	this.passwordConfirm = repassword;
+    }
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + (int) (id ^ (id >>> 32));
-		return result;
-	}
+    public double getMoney() {
+	return money;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		User other = (User) obj;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
-		if (id != other.id)
-			return false;
-		return true;
-	}
+    public void setMoney(double money) {
+	this.money = money;
+    }
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", email=" + email + ", name=" + name
-				+ ", surname=" + surname + ", password=" + password
-				+ ", repassword=" + passwordConfirm + ", money=" + money + ", valid="
-				+ valid + ", role=" + role + ", publishedSales="
-				+ publishedSales + ", boughtSales=" + boughtSales + "]";
-	}
-	
+    public boolean isValid() {
+	return valid;
+    }
+
+    public void setValid(boolean valid) {
+	this.valid = valid;
+    }
+
+    public Role getRole() {
+	return role;
+    }
+
+    public void setRole(Role role) {
+	this.role = role;
+    }
+
+    public Set<Sale> getPublishedSales() {
+	return publishedSales;
+    }
+
+    public void setPublishedSales(Set<Sale> publishedSales) {
+	this.publishedSales = publishedSales;
+    }
+
+    public Set<Sale> getBoughtSales() {
+	return boughtSales;
+    }
+
+    public void setBoughtSales(Set<Sale> boughtSales) {
+	this.boughtSales = boughtSales;
+    }
+
+    @Override
+    public int hashCode() {
+	final int prime = 31;
+	int result = 1;
+	result = prime * result + ((email == null) ? 0 : email.hashCode());
+	result = prime * result + (int) (id ^ (id >>> 32));
+	return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+	if (this == obj)
+	    return true;
+	if (obj == null)
+	    return false;
+	if (getClass() != obj.getClass())
+	    return false;
+	User other = (User) obj;
+	if (email == null) {
+	    if (other.email != null)
+		return false;
+	} else if (!email.equals(other.email))
+	    return false;
+	if (id != other.id)
+	    return false;
+	return true;
+    }
+
+    @Override
+    public String toString() {
+	return "User [id=" + id + ", email=" + email + ", name=" + name + ", surname=" + surname + ", password="
+		+ password + ", repassword=" + passwordConfirm + ", money=" + money + ", valid=" + valid + ", role="
+		+ role + ", publishedSales=" + publishedSales + ", boughtSales=" + boughtSales + "]";
+    }
 
 }

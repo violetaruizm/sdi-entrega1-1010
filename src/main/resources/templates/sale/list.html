@@ -16,15 +16,27 @@
 						<th th:text="#{list.sale.title}"></th>
 						<th th:text="#{list.sale.description}"></th>
 						<th th:text="#{list.sale.price}"></th>
+						<th th:text="#{sale.status}"></th>
 						<th class="col-md-1"></th>
+						
 						
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="sale : ${salesList}">
-						<td th:text="${sale.title}">71888888X</td>
-						<td th:text="${sale.description}">Nombre del alumno</td>
-						<td th:text="${sale.price}">Apellidos del alumno</td>
+						<td th:text="${sale.title}"></td>
+						<td th:text="${sale.description}"></td>
+						<td th:text="${sale.price}"></td>
+						
+						
+						
+						<td>
+							<span method="get"  th:if="${#strings.toString(sale.status)} == 'ONSALE' or ${#strings.toString(sale.status)} == 'HIGHLIGHTED'"
+							th:text="#{sale.available}">
+								
+							</span> 
+							<span th:if="${#strings.toString(sale.status)} == 'SOLD'" th:text="#{sale.sold}">Vendida</span>
+						</td>
 					
 						<td>
 							<form method="get" th:attr="action=${'/sale/delete/' + sale.id}">

@@ -7,9 +7,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.uniovi.entities.User;
 import com.uniovi.entities.types.Role;
 
-public interface UserRepository extends JpaRepository<User,Long> {
-	
-	User findByEmail(String email);
-    List<User> findByRoleAndValid(Role role,boolean valid);
+public interface UserRepository extends JpaRepository<User, Long> {
+
+    User findByEmail(String email);
+
+    List<User> findByRoleAndValid(Role role, boolean valid);
 
 }

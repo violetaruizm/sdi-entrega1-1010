@@ -1,8 +1,5 @@
 package com.uniovi.entities;
 
-
-
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,129 +18,121 @@ import com.uniovi.entities.types.Status;
 
 @Entity
 public class Sale {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-	
-	
-	private String title;
-	private String description;
-	private LocalDateTime date;
-	private double price;
-	private boolean valid;
-	
-	@Enumerated(EnumType.STRING)
-	private Status status;
-	
-	
-	@ManyToOne
-	private User owner;
-	
-	@ManyToOne
-	private User buyer;
-	
-	@OneToMany(mappedBy = "sale")
-	private Set<Message> messages = new HashSet<Message>();
-	
-	
-	public Sale() {
-		
-	}
 
-	public long getId() {
-		return id;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
+    private String title;
+    private String description;
+    private LocalDateTime date;
+    private double price;
+    private boolean valid;
 
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
-	public User getOwner() {
-		return owner;
-	}
+    @ManyToOne
+    private User owner;
 
-	public void setOwner(User owner) {
-		this.owner = owner;
-	}
+    @ManyToOne
+    private User buyer;
 
-	public String getTitle() {
-		return title;
-	}
+    @OneToMany(mappedBy = "sale")
+    private Set<Message> messages = new HashSet<Message>();
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public Sale() {
 
-	public String getDescription() {
-		return description;
-	}
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public long getId() {
+	return id;
+    }
 
-	public LocalDateTime getDate() {
-		return date;
-	}
+    public User getOwner() {
+	return owner;
+    }
 
-	public void setDate(LocalDateTime date) {
-		this.date = date;
-	}
+    public void setOwner(User owner) {
+	this.owner = owner;
+    }
 
-	public double getPrice() {
-		return price;
-	}
+    public String getTitle() {
+	return title;
+    }
 
-	public void setPrice(double price) {
-		this.price = price;
-	}
+    public void setTitle(String title) {
+	this.title = title;
+    }
 
-	public boolean isValid() {
-		return valid;
-	}
+    public String getDescription() {
+	return description;
+    }
 
-	public void setValid(boolean valid) {
-		this.valid = valid;
-	}
+    public void setDescription(String description) {
+	this.description = description;
+    }
 
-	public Status getStatus() {
-		return status;
-	}
+    public LocalDateTime getDate() {
+	return date;
+    }
 
-	public void setStatus(Status status) {
-		this.status = status;
-	}
+    public void setDate(LocalDateTime date) {
+	this.date = date;
+    }
 
-	public User getBuyer() {
-		return buyer;
-	}
+    public double getPrice() {
+	return price;
+    }
 
-	public void setBuyer(User buyer) {
-		this.buyer = buyer;
-	}
+    public void setPrice(double price) {
+	this.price = price;
+    }
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (int) (id ^ (id >>> 32));
-		return result;
-	}
+    public boolean isValid() {
+	return valid;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Sale other = (Sale) obj;
-		if (id != other.id)
-			return false;
-		return true;
-	}
-	
-	
-	
+    public void setValid(boolean valid) {
+	this.valid = valid;
+    }
+
+    public Status getStatus() {
+	return status;
+    }
+
+    public void setStatus(Status status) {
+	this.status = status;
+    }
+
+    public User getBuyer() {
+	return buyer;
+    }
+
+    public void setBuyer(User buyer) {
+	this.buyer = buyer;
+    }
+
+    @Override
+    public int hashCode() {
+	final int prime = 31;
+	int result = 1;
+	result = prime * result + (int) (id ^ (id >>> 32));
+	return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+	if (this == obj)
+	    return true;
+	if (obj == null)
+	    return false;
+	if (getClass() != obj.getClass())
+	    return false;
+	Sale other = (Sale) obj;
+	if (id != other.id)
+	    return false;
+	return true;
+    }
 
 }
