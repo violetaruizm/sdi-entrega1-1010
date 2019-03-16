@@ -266,9 +266,9 @@ public class sdiEntrega11010Tests {
     }
 
     @Test
-    public void testP1() throws Exception {
+    public void testP01() throws Exception {
 	driver.get("http://localhost:8090/login");
-	driver.findElement(By.linkText("Regístrate")).click();
+	driver.findElement(By.xpath("//*[contains(text(),'Regístrate')]")).click();
 	driver.findElement(By.name("email")).click();
 	driver.findElement(By.name("email")).clear();
 	driver.findElement(By.name("email")).sendKeys("nuevousuario@email.com");
@@ -296,9 +296,9 @@ public class sdiEntrega11010Tests {
     }
 
     @Test
-    public void testP2() throws Exception {
+    public void testP02() throws Exception {
 	driver.get("http://localhost:8090/login");
-	driver.findElement(By.linkText("Regístrate")).click();
+	driver.findElement(By.xpath("//*[contains(text(),'Regístrate')]")).click();
 	// Todos los campos vacios
 	driver.findElement(By.xpath("//*[contains(text(),'Registrarse')]")).click();
 	// El usuario sigue en la página de registro
@@ -324,9 +324,9 @@ public class sdiEntrega11010Tests {
     }
 
     @Test
-    public void testP3() throws Exception {
+    public void testP03() throws Exception {
 	driver.get("http://localhost:8090/signup");
-	driver.findElement(By.linkText("Regístrate")).click();
+	driver.findElement(By.xpath("//*[contains(text(),'Regístrate')]")).click();
 	driver.findElement(By.name("email")).click();
 	driver.findElement(By.name("email")).clear();
 	driver.findElement(By.name("email")).sendKeys("123@email.com");
@@ -354,7 +354,7 @@ public class sdiEntrega11010Tests {
     }
 
     @Test
-    public void testP4() throws Exception {
+    public void testP04() throws Exception {
 	driver.get("http://localhost:8090/login");
 	driver.findElement(By.linkText("Regístrate")).click();
 	driver.findElement(By.name("email")).click();
@@ -381,7 +381,7 @@ public class sdiEntrega11010Tests {
     }
 
     @Test
-    public void testP5() {
+    public void testP05() {
 
 	driver.get("http://localhost:8090/login");
 	driver.findElement(By.name("username")).click();
@@ -401,7 +401,7 @@ public class sdiEntrega11010Tests {
     }
 
     @Test
-    public void testP6() throws Exception {
+    public void testP06() throws Exception {
 	driver.get("http://localhost:8090/login");
 	driver.findElement(By.name("username")).click();
 	driver.findElement(By.name("username")).clear();
@@ -419,7 +419,7 @@ public class sdiEntrega11010Tests {
     }
 
     @Test
-    public void testP7() throws Exception {
+    public void testP07() throws Exception {
 	driver.get("http://localhost:8090/login");
 	driver.findElement(By.xpath("//*[contains(text(),'Login')]")).click();
 	// Todos los campos vacios
@@ -447,7 +447,7 @@ public class sdiEntrega11010Tests {
     }
 
     @Test
-    public void testP8() throws Exception {
+    public void testP08() throws Exception {
 	driver.get("http://localhost:8090/login");
 	driver.findElement(By.name("username")).click();
 	driver.findElement(By.name("username")).clear();
@@ -463,7 +463,7 @@ public class sdiEntrega11010Tests {
     }
 
     @Test
-    public void testP9() throws Exception {
+    public void testP09() throws Exception {
 	driver.get("http://localhost:8090/login");
 	driver.findElement(By.name("username")).click();
 	driver.findElement(By.name("username")).clear();
@@ -499,30 +499,181 @@ public class sdiEntrega11010Tests {
 	assertTrue(list.size() > 0);
 
     }
-    
+
     @Test
     public void testP11() throws Exception {
-      driver.get("http://localhost:8090/login");
-      driver.findElement(By.name("username")).click();
-      driver.findElement(By.name("username")).clear();
-      driver.findElement(By.name("username")).sendKeys("user1@email.com");
-      driver.findElement(By.name("password")).click();
-      driver.findElement(By.name("password")).clear();
-      driver.findElement(By.name("password")).sendKeys("12345");
-      //El usuario no tiene la opción de desconectarse
-      List<WebElement> list = driver.findElements(By.xpath("//*[contains(text(),'Desconectarse')]"));
+	driver.get("http://localhost:8090/login");
+	driver.findElement(By.name("username")).click();
+	driver.findElement(By.name("username")).clear();
+	driver.findElement(By.name("username")).sendKeys("user1@email.com");
+	driver.findElement(By.name("password")).click();
+	driver.findElement(By.name("password")).clear();
+	driver.findElement(By.name("password")).sendKeys("12345");
+	// El usuario no tiene la opción de desconectarse
+	List<WebElement> list = driver.findElements(By.xpath("//*[contains(text(),'Desconectarse')]"));
 	assertTrue(list.size() == 0);
-	//El usuario se autentifica
-      driver.findElement(By.xpath("//*[contains(text(),'Login')]")).click();
-      
-      //El usuario tiene la opción de desconectarse
-      list = driver.findElements(By.xpath("//*[contains(text(),'Desconectar')]"));
+	// El usuario se autentifica
+	driver.findElement(By.xpath("//*[contains(text(),'Login')]")).click();
+
+	// El usuario tiene la opción de desconectarse
+	list = driver.findElements(By.xpath("//*[contains(text(),'Desconectar')]"));
 	assertTrue(list.size() > 0);
-   // Usuario se deconecta
-   	driver.findElement(By.xpath("//*[contains(text(),'Desconectar')]")).click();
-   //La opción de desconectarse vuelve a no aparecer para el usuario
-   	list = driver.findElements(By.xpath("//*[contains(text(),'Desconectarse')]"));
+	// Usuario se deconecta
+	driver.findElement(By.xpath("//*[contains(text(),'Desconectar')]")).click();
+	// La opción de desconectarse vuelve a no aparecer para el usuario
+	list = driver.findElements(By.xpath("//*[contains(text(),'Desconectarse')]"));
 	assertTrue(list.size() == 0);
+    }
+
+    @Test
+    public void testP12() {
+	driver.get("http://localhost:8090/login");
+	driver.findElement(By.name("username")).click();
+	driver.findElement(By.name("username")).clear();
+	driver.findElement(By.name("username")).sendKeys("admin@email.com");
+	driver.findElement(By.name("password")).click();
+	driver.findElement(By.name("password")).clear();
+	driver.findElement(By.name("password")).sendKeys("admin");
+	// El usuario se autentifica
+	driver.findElement(By.xpath("//*[contains(text(),'Login')]")).click();
+	driver.findElement(By.xpath("//*[contains(text(),'Gestionar usuarios')]")).click();
+	driver.findElement(By.xpath("//*[contains(text(),'Ver usuarios')]")).click();
+
+	// Comprobamos que están todos los 5 usuarios
+	// El usuario administrador no aparece en el listado
+	List<WebElement> list = driver.findElements(By.xpath("//*[contains(text(),'user1@email.com')]"));
+	assertTrue(list.size() > 0);
+	list = driver.findElements(By.xpath("//*[contains(text(),'user2@email.com')]"));
+	assertTrue(list.size() > 0);
+	list = driver.findElements(By.xpath("//*[contains(text(),'user3@email.com')]"));
+	assertTrue(list.size() > 0);
+	list = driver.findElements(By.xpath("//*[contains(text(),'user4@email.com')]"));
+	assertTrue(list.size() > 0);
+	list = driver.findElements(By.xpath("//*[contains(text(),'user5@email.com')]"));
+	assertTrue(list.size() > 0);
+
+	// El administrador se desconecta
+	driver.findElement(By.xpath("//*[contains(text(),'Desconectar')]")).click();
+    }
+
+    @Test
+    public void testP13() throws Exception {
+	driver.get("http://localhost:8090/login");
+	driver.findElement(By.name("username")).click();
+	driver.findElement(By.name("username")).clear();
+	driver.findElement(By.name("username")).sendKeys("admin@email.com");
+	driver.findElement(By.name("password")).click();
+	driver.findElement(By.name("password")).clear();
+	driver.findElement(By.name("password")).sendKeys("admin");
+	// El usuario se autentifica
+	driver.findElement(By.xpath("//*[contains(text(),'Login')]")).click();
+	driver.findElement(By.xpath("//*[contains(text(),'Gestionar usuarios')]")).click();
+	driver.findElement(By.xpath("//*[contains(text(),'Ver usuarios')]")).click();
+
+	// Comprobamos que está el primer usuario
+	// El usuario administrador no aparece en el listado
+	List<WebElement> list = driver.findElements(By.xpath("//*[contains(text(),'user1@email.com')]"));
+	assertTrue(list.size() > 0);
+	// Lo eliminamos
+	driver.findElement(By.name("idsUser")).click();
+	// driver.findElement(By.xpath("(.//*[normalize-space(text()) and
+	// normalize-space(.)='User5'])[2]/following::input[2]")).click();
+	driver.findElement(By.name("delete")).click();
+
+	// Comprobamos que el primer usuario ya no aparece
+	list = driver.findElements(By.xpath("//*[contains(text(),'user1@email.com')]"));
+	assertTrue(list.size() == 0);
+
+	// Se muestra el mensaje de borrado correcto
+	list = driver.findElements(By.xpath("//*[contains(text(),'Se eliminó correctamente el usuario')]"));
+	assertTrue(list.size() > 0);
+
+	// El administrador se desconecta
+	driver.findElement(By.xpath("//*[contains(text(),'Desconectar')]")).click();
+    }
+
+    @Test
+    public void testP14() throws Exception {
+	driver.get("http://localhost:8090/login");
+	driver.findElement(By.name("username")).click();
+	driver.findElement(By.name("username")).clear();
+	driver.findElement(By.name("username")).sendKeys("admin@email.com");
+	driver.findElement(By.name("password")).click();
+	driver.findElement(By.name("password")).clear();
+	driver.findElement(By.name("password")).sendKeys("admin");
+	// El usuario se autentifica
+	driver.findElement(By.xpath("//*[contains(text(),'Login')]")).click();
+	driver.findElement(By.xpath("//*[contains(text(),'Gestionar usuarios')]")).click();
+	driver.findElement(By.xpath("//*[contains(text(),'Ver usuarios')]")).click();
+
+	// Comprobamos que está el último usuario
+	// El usuario administrador no aparece en el listado
+	List<WebElement> list = driver.findElements(By.xpath("//*[contains(text(),'user5@email.com')]"));
+	assertTrue(list.size() > 0);
+	driver.findElement(
+		By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='User5'])[2]/following::input[1]"))
+		.click();
+	driver.findElement(By.name("delete")).click();
+
+	// Comprobamos que el primer usuario ya no aparece
+	list = driver.findElements(By.xpath("//*[contains(text(),'user5@email.com')]"));
+	assertTrue(list.size() == 0);
+
+	// Se muestra el mensaje de borrado correcto
+	list = driver.findElements(By.xpath("//*[contains(text(),'Se eliminó correctamente el usuario')]"));
+	assertTrue(list.size() > 0);
+
+	// El administrador se desconecta
+	driver.findElement(By.xpath("//*[contains(text(),'Desconectar')]")).click();
+    }
+
+    @Test
+    public void testP15() throws Exception {
+	driver.get("http://localhost:8090/login");
+	driver.findElement(By.name("username")).click();
+	driver.findElement(By.name("username")).clear();
+	driver.findElement(By.name("username")).sendKeys("admin@email.com");
+	driver.findElement(By.name("password")).click();
+	driver.findElement(By.name("password")).clear();
+	driver.findElement(By.name("password")).sendKeys("admin");
+	// El usuario se autentifica
+	driver.findElement(By.xpath("//*[contains(text(),'Login')]")).click();
+	driver.findElement(By.xpath("//*[contains(text(),'Gestionar usuarios')]")).click();
+	driver.findElement(By.xpath("//*[contains(text(),'Ver usuarios')]")).click();
+
+	// Comprobamos que está los 3 usuarios que vamos a borrar
+	// El usuario administrador no aparece en el listado
+	List<WebElement> list = driver.findElements(By.xpath("//*[contains(text(),'user1@email.com')]"));
+	assertTrue(list.size() > 0);
+	list = driver.findElements(By.xpath("//*[contains(text(),'user2@email.com')]"));
+	assertTrue(list.size() > 0);
+	list = driver.findElements(By.xpath("//*[contains(text(),'user3@email.com')]"));
+	assertTrue(list.size() > 0);
+
+	// Eliminamos los tres usuarios
+	driver.findElement(By.name("idsUser")).click();
+	driver.findElement(
+		By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='User2'])[2]/following::input[1]"))
+		.click();
+	driver.findElement(
+		By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='User3'])[2]/following::input[1]"))
+		.click();
+	driver.findElement(By.name("delete")).click();
+
+	// Comprobamos que ya no están los usuarios
+
+	list = driver.findElements(By.xpath("//*[contains(text(),'user1@email.com')]"));
+	assertTrue(list.size() == 0);
+	list = driver.findElements(By.xpath("//*[contains(text(),'user2@email.com')]"));
+	assertTrue(list.size() == 0);
+	list = driver.findElements(By.xpath("//*[contains(text(),'user3@email.com')]"));
+	assertTrue(list.size() == 0);
+
+	// Se muestra el mensaje de borrado correcto
+	list = driver.findElements(By.xpath("//*[contains(text(),'Se eliminó correctamente el usuario')]"));
+	assertTrue(list.size() > 0);
+	// El administrador se desconecta
+	driver.findElement(By.xpath("//*[contains(text(),'Desconectar')]")).click();
     }
 
 }
