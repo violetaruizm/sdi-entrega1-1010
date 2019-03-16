@@ -62,17 +62,7 @@ public class UsersController {
 		return "login";
 	}
 
-	@RequestMapping(value = { "/home" }, method = RequestMethod.GET)
-	public String home(Model model) {
-		
-		
-		Authentication auth = SecurityContextHolder.getContext()
-				.getAuthentication();
-		String email = auth.getName();
-		User activeUser = userService.getUser(email);
-		model.addAttribute("email", activeUser.getEmail());
-		return "home";
-	}
+	
 	
 	
 	@RequestMapping("/user/list")

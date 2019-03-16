@@ -34,9 +34,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/css/**", "/img/**", "/script/**", "/", "/signup",
 						"/login/**")
 				.permitAll()
+				
+				// Permite solo a los administradores
+				.antMatchers("/user/**").hasAnyAuthority("ROLE_ADMIN")
+				// Permite solo a los usuarios
+				.antMatchers("/sale/**").hasAuthority("ROLE_STANDARD")
 				.anyRequest().authenticated()
+				// pagina de autentificacion por defecto
 				.and().formLogin().loginPage("/login").permitAll()
+				// Si se loguea bien
 				.defaultSuccessUrl("/home")
+				// desconectarse
 				.and().logout().permitAll();
 	}
 

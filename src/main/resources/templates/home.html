@@ -7,7 +7,10 @@
 		<h2 th:text="#{welcome.message}"></h2>
 		<h3>Esta es una zona privada la web</h3>
 		<p>
-			Usuario Autenticado como : <b th:inline="text"> </b>
+			Usuario Autenticado como : <b th:inline="text" id = email> </b>
+		</p>
+		<p>
+			Saldo actual <b th:inline="text" id=money> </b>
 		</p>
         </div>
 	<footer th:replace="fragments/footer" />

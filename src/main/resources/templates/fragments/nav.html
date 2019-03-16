@@ -13,22 +13,40 @@
 			<ul class="nav navbar-nav">
 
 
-				<li><a href="/" sec:authorize="isAuthenticated()">Home</a></li>
+				<li><a href="/home" sec:authorize="isAuthenticated() && hasRole('ROLE_STANDARD')">Home</a></li>
+				
+				<li id="personal-menu" class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#" sec:authorize="isAuthenticated() && hasRole('ROLE_STANDARD') " th:text="#{nav.personal.message}">
+						<span class="caret"></span>
+				</a>
+					<ul class="dropdown-menu">
+						
+						
+						<li sec:authorize="hasRole('ROLE_STANDARD')"><a
+							href="/sale/list" th:text="#{nav.sales.posted.message}"></a></li>
+						<li sec:authorize="hasRole('ROLE_STANDARD')"><a
+							href="/sale/bought" th:text="#{nav.sales.bought.message}"></a></li>
+					</ul></li>
+				
+				
+				
 				<li id="marks-menu" class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#" sec:authorize="isAuthenticated()" th:text="#{nav.salesmgmt.message}">
+					data-toggle="dropdown" href="#" sec:authorize="isAuthenticated() && hasRole('ROLE_STANDARD') " th:text="#{nav.salesmgmt.message}">
 						<span class="caret"></span>
 				</a>
 					<ul class="dropdown-menu">
 						<li sec:authorize="hasRole('ROLE_STANDARD')"><a
 							href="/sale/add" th:text="#{nav.sales.new.message}"></a></li>
-						<li><a href="/sale/list" th:text="#{nav.sales.all.message}"></a></li>
+						<li sec:authorize="hasRole('ROLE_STANDARD')"><a
+							href="/sale/all" th:text="#{nav.sales.all.message}"></a></li>
+					
 					</ul></li>
 				<li id="users-menu" class="dropdown"><a
 					class="dropdown-toggle" data-toggle="dropdown"
 					sec:authorize="hasRole('ROLE_ADMIN')" href="#" th:text="#{nav.usermgmt.message}">  <span class="caret"></span>
 				</a>
 					<ul class="dropdown-menu">
-						<li><a href="/user/add" th:text="#{nav.user.add.message}"></a></li>
+						
 						<li><a href="/user/list" th:text="#{nav.user.all.message}"></a></li>
 					</ul></li>
 
@@ -63,10 +81,17 @@
 						th:text="#{login.message}"> <span
 							class="glyphicon glyphicon-log-in"></span> Identifícate
 					</a></li>
+					
+					
 					<li sec:authorize="isAuthenticated()"><a href="/logout"> <span
 							class="glyphicon glyphicon-log-out" th:text="#{disconnect.message}"></span> 
 					</a></li>
+					
+					
+					<li><a sec:authorize="isAuthenticated() && hasRole('ROLE_STANDARD')" th:text="#{money.message}+${money}"></a></li>
 				</ul>
+				
+				
 		</div>
 	</div>
 </nav>

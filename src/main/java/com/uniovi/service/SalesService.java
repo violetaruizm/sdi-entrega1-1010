@@ -60,13 +60,16 @@ public class SalesService {
 
 	public void addSale(Sale sale) {
 // Si en Id es null le asignamos el ultimo + 1 de la lista
+		
 		salesRepository.save(sale);
 	}
 
-	public void deleteSale(Long id) {
+	public boolean deleteSale(Long id) {
 		Sale sale = salesRepository.getOne(id);
 		sale.setValid(false);
+		sale.setStatus(Status.OUT);
 		salesRepository.save(sale);
+		return true;
 	}
 
 	public Page<Sale> searchSalesByTitle(Pageable pageable,String searchText, User user) {

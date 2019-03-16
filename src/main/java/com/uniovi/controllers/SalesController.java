@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.uniovi.entities.Sale;
 import com.uniovi.entities.User;
 import com.uniovi.entities.types.Role;
+import com.uniovi.entities.types.Status;
 import com.uniovi.service.SalesService;
 import com.uniovi.service.UsersService;
 import com.uniovi.validators.AddSaleFormValidator;
@@ -40,6 +41,11 @@ public class SalesController {
 
 	@RequestMapping(value = "/sale/add", method = RequestMethod.GET)
 	public String add(Model model) {
+		Authentication auth = SecurityContextHolder.getContext()
+				.getAuthentication();
+		String email = auth.getName();
+		User activeUser = userService.getUser(email);
+		model.addAttribute("money",activeUser.getMoney());
 		model.addAttribute("sale", new Sale());
 		return "sale/add";
 	}
@@ -60,6 +66,7 @@ public class SalesController {
 		sale.setValid(true);
 
 		sale.setOwner(activeUser);
+		sale.setStatus(Status.ONSALE);
 		salesService.addSale(sale);
 
 		return "redirect:/sale/list";
@@ -72,6 +79,7 @@ public class SalesController {
 		String email = auth.getName();
 		User activeUser = userService.getUser(email);
 		System.out.println(salesService.getSalesByOwner(activeUser).size());
+		model.addAttribute("money",activeUser.getMoney());
 		model.addAttribute("salesList",
 				salesService.getSalesByOwner(activeUser));
 		return "sale/list";
@@ -90,39 +98,63 @@ public class SalesController {
 		String email = auth.getName();
 		User activeUser = userService.getUser(email);
 		System.out.println(salesService.getSalesByBuyer(activeUser).size());
+		model.addAttribute("money",activeUser.getMoney());
 		model.addAttribute("salesList",
 				salesService.getSalesByBuyer(activeUser));
+		
 		return "sale/boughtList";
 	}
 
 	@RequestMapping("/sale/all")
-	public String getList(Pageable pageable,Model model, Principal principal,
+	public String getList(Pageable pageable, Model model, Principal principal,
 			@RequestParam(value = "", required = false) String searchText) {
 		String email = principal.getName();
 		User user = userService.getUser(email);
 		if (user != null) {
-			Page<Sale> sales = salesService.searchSalesByTitle(pageable,searchText,
-					user);
+			if (searchText == null || searchText.equals("null")) {
+				searchText = "";
+			}
+			Page<Sale> sales = salesService.searchSalesByTitle(pageable,
+					searchText, user);
+			model.addAttribute("money",user.getMoney());
 			model.addAttribute("salesList", sales.getContent());
+			model.addAttribute("page", sales);
+			
 		}
 
 		return "sale/allSalesList";
 	}
-	
+
 	@RequestMapping("/sale/buy/{id}")
-	public String buyOffer(@PathVariable Long id,Principal principal) {
+	public String buyOffer(@PathVariable Long id, Principal principal) {
 		String email = principal.getName();
 		User user = userService.getUser(email);
-		if(user!=null) {
-			boolean sold = salesService.buySale(id,user);
-			if(sold) {
+		if (user != null) {
+			boolean sold = salesService.buySale(id, user);
+			if (sold) {
 				return "redirect:/sale/all?success";
-				
+
 			}
-			
+
 		}
 		return "redirect:/sale/all?error";
-		
+
+	}
+
+	@RequestMapping("/sale/delete/{id}")
+	public String deleteOffer(@PathVariable Long id, Principal principal) {
+		String email = principal.getName();
+		User user = userService.getUser(email);
+		if (user != null) {
+			boolean sold = salesService.deleteSale(id);
+			if (sold) {
+				return "redirect:/sale/list?success";
+
+			}
+
+		}
+		return "redirect:/sale/list?error";
+
 	}
 
 }

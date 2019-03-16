@@ -9,7 +9,7 @@
 		<p th:text="#{list.description.sales}"></p>
 		<div class="table-responsive">
 		<div th:if="${param.succesful}" class="alert alert-dismissible alert-success" th:text="#{delete.succesful.list}"></div>
-			<form action="/sale/delete" method="post">
+			
 			<table class="table table-hover">
 				<thead>
 					<tr>
@@ -25,14 +25,22 @@
 						<td th:text="${sale.title}">71888888X</td>
 						<td th:text="${sale.description}">Nombre del alumno</td>
 						<td th:text="${sale.price}">Apellidos del alumno</td>
-					<td><input type="checkbox" name="idsSale" th:value="${sale.id}"/></td>
-						
+					
+						<td>
+							<form method="get" th:attr="action=${'/sale/delete/' + sale.id}">
+								<input  type="submit" th:value="#{sale.delete}" />
+							</form> 
+							
+						</td>
 					</tr>
 				</tbody>
 			</table>
-			<input type="submit" th:value="#{user.list.delete}"/>
+			
 			
 			</form>
+			
+			<div th:if="${param.error}" class="alert alert-dismissible alert-success" th:text="#{delete.error}"></div>
+			<div th:if="${param.success}" class="alert alert-dismissible alert-success" th:text="#{delete.success}"></div>
 		</div>
 	</div>
 	<footer th:replace="fragments/footer" />
