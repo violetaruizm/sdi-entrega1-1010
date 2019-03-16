@@ -95,5 +95,9 @@ public class SalesService {
 	return false;
 
     }
+    
+    public void deleteAll() {
+	salesRepository.deleteAll();
+    }
 
 }

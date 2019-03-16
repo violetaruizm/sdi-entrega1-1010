@@ -56,5 +56,9 @@ public class UsersService {
 	user.setValid(false);
 	userRepository.save(user);
     }
+    
+    public void deleteAll() {
+	userRepository.deleteAll();
+    }
 
 }
