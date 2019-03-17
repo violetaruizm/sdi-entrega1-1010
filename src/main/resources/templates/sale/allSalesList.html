@@ -46,7 +46,7 @@
 
 						<td>
 							<form method="get" th:attr="action=${'/sale/buy/' + sale.id}" th:if="${#strings.toString(sale.status)} == 'ONSALE' or ${#strings.toString(sale.status)} == 'HIGHLIGHTED'">
-								<input  type="submit" th:value="#{sale.buy}" />
+								<input  type="submit" th:value="#{sale.buy}" name="${sale.title}"/>
 							</form> 
 							<span th:if="${#strings.toString(sale.status)} == 'SOLD'" th:text="#{sale.sold}">Vendida</span>
 						</td>

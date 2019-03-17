@@ -648,13 +648,15 @@ public class sdiEntrega11010Tests {
 
 	// Eliminamos los tres usuarios
 	driver.findElement(By.name("idsUser")).click();
+	
 	driver.findElement(
-		By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='User2'])[2]/following::input[1]"))
+		By.xpath("//*[contains(text(),  'User2')][2]/following::input[1]"))
 		.click();
 
 	driver.findElement(
-		By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='User3'])[2]/following::input[1]"))
+		By.xpath("//*[contains(text(),  'User3')][2]/following::input[1]"))
 		.click();
+	
 
 	driver.findElement(By.name("delete")).click();
 
@@ -816,11 +818,12 @@ public class sdiEntrega11010Tests {
 	// Comprobamos que está la primera oferta
 	list = driver.findElements(By.xpath("//*[contains(text(),'Oferta 1a')]"));
 	assertTrue(list.size() > 0);
-
+	
 	// La borramos
 	driver.findElement(
-		By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Vendida'])[1]/following::input[1]"))
+		By.xpath("//*[contains(text(),  'Vendida')][1]/following::input[1]"))
 		.click();
+	
 	// Comprobamos que ya no está
 	list = driver.findElements(By.xpath("//*[contains(text(),'Oferta 1a')]"));
 	assertTrue(list.size() == 0);
@@ -854,7 +857,7 @@ public class sdiEntrega11010Tests {
 	assertTrue(list.size() > 0);
 
 	driver.findElement(
-		By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Sin vender'])[1]/following::input[1]"))
+		By.xpath("//*[contains(text(),  'Sin vender')][1]/following::input[1]"))
 		.click();
 	// Comprobamos que ya no está
 	list = driver.findElements(By.xpath("//*[contains(text(),'Oferta 1c')]"));
@@ -948,7 +951,7 @@ public class sdiEntrega11010Tests {
 
 	// La compramos
 	driver.findElement(
-		By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Oferta 1c'])[1]/following::input[1]"))
+		By.xpath("//*[contains(text(),  'Oferta 1c')][1]/following::input[1]"))
 		.click();
 	// Vamos a la vista del usuario
 	driver.findElement(By.xpath("//*[contains(text(),'Home')]")).click();
@@ -983,9 +986,9 @@ public class sdiEntrega11010Tests {
 	driver.findElement(By.name("searchText")).clear();
 	driver.findElement(By.name("searchText")).sendKeys("2a");
 	driver.findElement(By.name("search")).click();
-	// La compramos
+	
 	driver.findElement(
-		By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Oferta 2a'])[1]/following::input[1]"))
+		By.xpath("//*[contains(text(),  'Oferta 2a')][1]/following::input[1]"))
 		.click();
 	driver.findElement(By.linkText("Home")).click();
 	// Comprobamos que se ha actualizado su dinero
@@ -1022,7 +1025,7 @@ public class sdiEntrega11010Tests {
 
 	// La compramos
 	driver.findElement(
-		By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Oferta 2a'])[1]/following::input[1]"))
+		By.xpath("//*[contains(text(),  'Oferta 2a')][1]/following::input[1]"))
 		.click();
 	// Comprobamos que sale el mensaje de que no se ha podido comprar la oferta
 	list = driver.findElements(By.xpath("//*[contains(text(),'La compra no pudo completarse')]"));
@@ -1032,9 +1035,183 @@ public class sdiEntrega11010Tests {
 	driver.findElement(By.linkText("Home")).click();
 	list = driver.findElements(By.xpath("//*[contains(text(),'80.95')]"));
 	assertTrue(list.size() > 0);
-	
+
 	// El usuario se desconecta
 	driver.findElement(By.xpath("//*[contains(text(),'Desconectar')]")).click();
+    }
+
+    @Test
+    public void testP26() {
+	driver.get("http://localhost:8090/login");
+	driver.findElement(By.name("username")).click();
+	driver.findElement(By.name("username")).clear();
+	driver.findElement(By.name("username")).sendKeys("user1@email.com");
+	driver.findElement(By.name("password")).click();
+	driver.findElement(By.name("password")).clear();
+	driver.findElement(By.name("password")).sendKeys("12345");
+	// El usuario se autentifica
+	driver.findElement(By.xpath("//*[contains(text(),'Login')]")).click();
+	driver.findElement(By.linkText("Personal")).click();
+	driver.findElement(By.linkText("Ofertas compradas")).click();
+
+	// Comprobamos que está en la página correcta
+	List<WebElement> list = driver
+		.findElements(By.xpath("//*[contains(text(),'Estas son las ofertas que has comprado')]"));
+	assertTrue(list.size() > 0);
+
+	// Comprobamos que aparecen todas las ofertas
+	list = driver.findElements(By.xpath("//*[contains(text(),'Oferta 2c')]"));
+	assertTrue(list.size() > 0);
+	list = driver.findElements(By.xpath("//*[contains(text(),'Oferta 5a')]"));
+	assertTrue(list.size() > 0);
+
+	// El usuario se desconecta
+	driver.findElement(By.xpath("//*[contains(text(),'Desconectar')]")).click();
+    }
+
+    @Test
+    public void testP27() {
+	driver.get("http://localhost:8090/login");
+	driver.findElement(By.name("username")).click();
+	driver.findElement(By.name("username")).clear();
+	driver.findElement(By.name("username")).sendKeys("user1@email.com");
+	driver.findElement(By.name("password")).click();
+	driver.findElement(By.name("password")).clear();
+	driver.findElement(By.name("password")).sendKeys("12345");
+	// El usuario se autentifica
+	driver.findElement(By.xpath("//*[contains(text(),'Login')]")).click();
+
+	// Página principal
+
+	// Comprobamos algunos elementos en español
+	List<WebElement> list = driver
+		.findElements(By.xpath("//*[contains(text(),'Bienvenidos a la página principal')]"));
+	assertTrue(list.size() > 0);
+	list = driver.findElements(By.xpath("//*[contains(text(),'Esta es una zona privada la web')]"));
+	assertTrue(list.size() > 0);
+
+	// Cambiamos el idioma
+	driver.findElement(By.id("btnLanguage")).click();
+	driver.findElement(
+		By.id("btnEnglish"))
+		.click();
+
+	// Volvemos a comprobar los mismos mensajes
+	list = driver.findElements(By.xpath("//*[contains(text(),'Welcome to homepage')]"));
+	assertTrue(list.size() > 0);
+	list = driver.findElements(By.xpath("//*[contains(text(),'This is a private area of the web')]"));
+	assertTrue(list.size() > 0);
+
+	// Vamos a la vista de las ofertas publicadas
+	driver.findElement(By.linkText("Personal")).click();
+	driver.findElement(By.linkText("Posted sales")).click();
+
+	// Comprobamos algunos mensajes
+	list = driver.findElements(By.xpath("//*[contains(text(),'These are all the sales that you have posted')]"));
+	assertTrue(list.size() > 0);
+	list = driver.findElements(By.xpath("//*[contains(text(),'Your sales')]"));
+	assertTrue(list.size() > 0);
+
+	// Cambiamos el idioma a español de nuevo
+	driver.findElement(By.id("btnLanguage")).click();
+	driver.findElement(
+		By.id("btnSpanish"))
+		.click();
+	// Volvemos a comprobar los mensajes
+	list = driver.findElements(By.xpath("//*[contains(text(),'Estas son las ofertas que has publicado')]"));
+	assertTrue(list.size() > 0);
+	list = driver.findElements(By.xpath("//*[contains(text(),'Tus ofertas')]"));
+	assertTrue(list.size() > 0);
+
+	// Vamos a la página para añadir una oferta nueva
+	driver.findElement(By.linkText("Ofertas")).click();
+	driver.findElement(By.linkText("Nueva oferta")).click();
+	// Comprobamos algunos mensajes
+	list = driver.findElements(By.xpath("//*[contains(text(),'Nueva oferta')]"));
+	assertTrue(list.size() > 0);
+	list = driver.findElements(By.xpath("//*[contains(text(),'Titulo de la oferta:')]"));
+	assertTrue(list.size() > 0);
+	// Cambiamos el idioma al inglés
+	driver.findElement(By.id("btnLanguage")).click();
+	driver.findElement(
+		By.id("btnEnglish"))
+		.click();
+	// Comprobamos los mensajes de nuevo
+	list = driver.findElements(By.xpath("//*[contains(text(),'New sale')]"));
+	assertTrue(list.size() > 0);
+	list = driver.findElements(By.xpath("//*[contains(text(),'Title of the sale:')]"));
+	assertTrue(list.size() > 0);
+
+	// El usuario se desconecta
+	driver.findElement(By.xpath("//*[contains(text(),'Disconnect')]")).click();
+	// El administrador inicia sesión
+	driver.findElement(By.name("username")).click();
+	driver.findElement(By.name("username")).clear();
+	driver.findElement(By.name("username")).sendKeys("admin@email.com");
+	driver.findElement(By.name("password")).click();
+	driver.findElement(By.name("password")).clear();
+	driver.findElement(By.name("password")).sendKeys("admin");
+	driver.findElement(By.xpath("//*[contains(text(),'Login')]")).click();
+
+	// Vamos a la vista con la lista de usuarios
+	driver.findElement(By.linkText("Gestionar usuarios")).click();
+	driver.findElement(By.linkText("Ver usuarios")).click();
+	// Comprobamos algunos mensajes
+	list = driver.findElements(By.xpath("//*[contains(text(),'Estos son los usuarios que están en el sistema')]"));
+	assertTrue(list.size() > 0);
+	list = driver.findElements(By.xpath("//*[contains(text(),'Apellidos')]"));
+	assertTrue(list.size() > 0);
+
+	// Cambiamos el idioma al inglés
+	driver.findElement(By.id("btnLanguage")).click();
+	driver.findElement(By.id("btnEnglish")).click();
+
+	// Comprobamos de nuevo los mensajes
+	list = driver.findElements(By.xpath("//*[contains(text(),'These are the users in the system')]"));
+	assertTrue(list.size() > 0);
+	list = driver.findElements(By.xpath("//*[contains(text(),'Surname')]"));
+	assertTrue(list.size() > 0);
+	// El usuario se desconecta
+	driver.findElement(By.xpath("//*[contains(text(),'Disconnect')]")).click();
+    }
+
+    @Test
+    public void testP28() {
+	driver.get("http://localhost:8090/login");
+	// Intentamos ir a la lista de usuarios sin autentificar
+	driver.get("http://localhost:8090/user/list");
+	// Comprobamos que volvemos a la página de login
+	List<WebElement> list = driver.findElements(By.xpath("//*[contains(text(),'Identifícate')]"));
+	assertTrue(list.size() > 0);
+
+    }
+
+    @Test
+    public void testP29() {
+	driver.get("http://localhost:8090/login");
+	// Intentamos ir a la lista de ofertas del usuario
+	driver.get("http://localhost:8090/sale/list");
+	// Comprobamos que volvemos a la página de login
+	List<WebElement> list = driver.findElements(By.xpath("//*[contains(text(),'Identifícate')]"));
+	assertTrue(list.size() > 0);
+
+    }
+
+    @Test
+    public void testP30() {
+	driver.get("http://localhost:8090/login");
+	driver.findElement(By.name("username")).click();
+	driver.findElement(By.name("username")).clear();
+	driver.findElement(By.name("username")).sendKeys("user1@email.com");
+	driver.findElement(By.name("password")).click();
+	driver.findElement(By.name("password")).clear();
+	driver.findElement(By.name("password")).sendKeys("12345");
+	// El usuario se autentifica
+	driver.findElement(By.xpath("//*[contains(text(),'Login')]")).click();
+	driver.get("http://localhost:8090/user/list");
+	// Comprobamos que no está permitido
+	List<WebElement> list = driver.findElements(By.xpath("//*[contains(text(),'HTTP Status 403 – Forbidden')]"));
+	assertTrue(list.size() > 0);
     }
 
 }
