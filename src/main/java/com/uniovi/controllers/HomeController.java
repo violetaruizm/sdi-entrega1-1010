@@ -15,6 +15,14 @@ import com.uniovi.service.UsersService;
 public class HomeController {
     @Autowired
     private UsersService userService;
+	
+
+
+    @GetMapping("/")
+    public String index() {
+        return "redirect:/login";
+    }
+
 
     @RequestMapping(value = { "/home" }, method = RequestMethod.GET)
     public String home(Model model) {
