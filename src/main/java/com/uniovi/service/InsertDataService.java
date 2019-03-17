@@ -3,6 +3,7 @@ package com.uniovi.service;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.uniovi.entities.Sale;
@@ -16,72 +17,78 @@ import com.uniovi.repositories.UserRepository;
 public class InsertDataService {
 
     @Autowired
-    private UsersService userService;
+    private UserRepository userService;
 
     @Autowired
-    private SalesService saleService;
+    private SalesRepository saleService;
+    
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    
+    
 
     @PostConstruct
     public void init() {
 	
+	
 	 User admin = new User();
 	    admin.setEmail("admin@email.com");
-	    admin.setPassword("admin");
+	    admin.setPassword(bCryptPasswordEncoder.encode("admin"));
 	    admin.setRole(Role.ROLE_ADMIN);
 	    admin.setName("Admin");
 	    admin.setSurname("Admin");
 	    admin.setValid(true);
-	    userService.addUser(admin);
+	    userService.save(admin);
 	    
 	    User user1 = new User();
 	    user1.setEmail("user1@email.com");
-	    user1.setPassword("12345");
+	    user1.setPassword(bCryptPasswordEncoder.encode("12345"));
 	    user1.setRole(Role.ROLE_STANDARD);
 	    user1.setName("User1");
 	    user1.setSurname("user1");
 	    user1.setValid(true);
 	    user1.setMoney(100);
-	   userService.addUser(user1);
+	   userService.save(user1);
 	    
 	    User user2 = new User();
 	    user2.setEmail("user2@email.com");
-	    user2.setPassword("12345");
+	    user2.setPassword(bCryptPasswordEncoder.encode("12345"));
 	    user2.setRole(Role.ROLE_STANDARD);
 	    user2.setName("User2");
 	    user2.setSurname("User2");
 	    user2.setValid(true);
 	    user2.setMoney(250);
-	    userService.addUser(user2);
+	    userService.save(user2);
 	    
 	    User user3 = new User();
 	    user3.setEmail("user3@email.com");
-	    user3.setPassword("12345");
+	    user3.setPassword(bCryptPasswordEncoder.encode("12345"));
 	    user3.setRole(Role.ROLE_STANDARD);
 	    user3.setName("User3");
 	    user3.setSurname("User3");
 	    user3.setValid(true);
 	    user3.setMoney(80.95);
-	    userService.addUser(user3);
+	    userService.save(user3);
 	    
 	    User user4 = new User();
 	    user4.setEmail("user4@email.com");
-	    user4.setPassword("12345");
+	    user4.setPassword(bCryptPasswordEncoder.encode("12345"));
 	    user4.setRole(Role.ROLE_STANDARD);
 	    user4.setName("User4");
 	    user4.setSurname("User4");
 	    user4.setValid(true);
 	    user4.setMoney(125.30);
-	    userService.addUser(user4);
+	    userService.save(user4);
 	    
 	    User user5 = new User();
 	    user5.setEmail("user5@email.com");
-	    user5.setPassword("12345");
+	    user5.setPassword(bCryptPasswordEncoder.encode("12345"));
 	    user5.setRole(Role.ROLE_STANDARD);
 	    user5.setName("User5");
 	    user5.setValid(true);
 	    user5.setSurname("User5");
 	    user5.setMoney(50);
-	    userService.addUser(user5);
+	    userService.save(user5);
 	    
 	    
 	    //Ofertas de cada usuario
@@ -200,25 +207,25 @@ public class InsertDataService {
 	    oferta5a.setBuyer(user1);
 	    oferta5c.setBuyer(user2);
 	    
-	    saleService.addSale(oferta1a);
-	    saleService.addSale(oferta1b);
-	    saleService.addSale(oferta1c);
+	    saleService.save(oferta1a);
+	    saleService.save(oferta1b);
+	    saleService.save(oferta1c);
 	    
-	    saleService.addSale(oferta2a);
-	    saleService.addSale(oferta2b);
-	    saleService.addSale(oferta2c);
+	    saleService.save(oferta2a);
+	    saleService.save(oferta2b);
+	    saleService.save(oferta2c);
 	    
-	    saleService.addSale(oferta3a);
-	    saleService.addSale(oferta3b);
-	    saleService.addSale(oferta3c);
+	    saleService.save(oferta3a);
+	    saleService.save(oferta3b);
+	    saleService.save(oferta3c);
 	    
-	    saleService.addSale(oferta4a);
-	    saleService.addSale(oferta4b);
-	    saleService.addSale(oferta4c);
+	    saleService.save(oferta4a);
+	    saleService.save(oferta4b);
+	    saleService.save(oferta4c);
 	    
-	    saleService.addSale(oferta5a);
-	    saleService.addSale(oferta5b);
-	    saleService.addSale(oferta5c);
+	    saleService.save(oferta5a);
+	    saleService.save(oferta5b);
+	    saleService.save(oferta5c);
     }
 
 }

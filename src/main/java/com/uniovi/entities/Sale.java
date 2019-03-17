@@ -38,8 +38,7 @@ public class Sale {
     @ManyToOne
     private User buyer;
 
-    @OneToMany(mappedBy = "sale")
-    private Set<Message> messages = new HashSet<Message>();
+   
 
     public Sale() {
 

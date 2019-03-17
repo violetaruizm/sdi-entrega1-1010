@@ -13,10 +13,15 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
+
+
 import com.uniovi.entities.types.Role;
 
 @Entity
 public class User {
+    
+    
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -43,11 +48,7 @@ public class User {
     @OneToMany(mappedBy = "buyer")
     private Set<Sale> boughtSales = new HashSet<Sale>();
 
-    @OneToMany(mappedBy = "sender")
-    private Set<Message> sentMessages = new HashSet<Message>();
-
-    @OneToMany(mappedBy = "receiver")
-    private Set<Message> receivedMessages = new HashSet<Message>();
+   
 
     public User() {
 
@@ -86,7 +87,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-	this.password = password;
+	this.password=password;
     }
 
     public String getPasswordConfirm() {
@@ -171,5 +172,7 @@ public class User {
 		+ password + ", repassword=" + passwordConfirm + ", money=" + money + ", valid=" + valid + ", role="
 		+ role + ", publishedSales=" + publishedSales + ", boughtSales=" + boughtSales + "]";
     }
+    
+   
 
 }
