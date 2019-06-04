@@ -19,6 +19,8 @@
 						<th th:text="#{sale.status}"></th>
 						<th class="col-md-1"></th>
 						
+						<th class="col-md-1"></th>
+						
 						
 					</tr>
 				</thead>
@@ -27,6 +29,15 @@
 						<td th:text="${sale.title}"></td>
 						<td th:text="${sale.description}"></td>
 						<td th:text="${sale.price}"></td>
+						<td>
+							<form method="get" th:attr="action=${'/sale/destacar/' + sale.id}" th:if="${#strings.toString(sale.status)} == 'ONSALE' and ${!sale.destacada}">
+								<input  type="submit" th:value="#{sale.destacarOferta}" name="${sale.title}"/>
+							</form> 
+							<span th:if="${sale.destacada}" th:text="#{sale.destacada}">Destacada</span>
+							
+							
+						</td>
+						
 						
 						
 						

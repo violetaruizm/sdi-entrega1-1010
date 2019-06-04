@@ -100,4 +100,19 @@ public class SalesService {
 	salesRepository.deleteAll();
     }
 
+	public boolean destacarOferta(Long id,User user) {
+		Sale sale = salesRepository.getOne(id);
+		
+		if(user.getMoney()-20>=0) {
+			sale.setDestacada(true);
+			user.setMoney(user.getMoney()-20);
+			sale.setBuyer(user);
+			salesRepository.save(sale);
+			return true;
+		}
+		return false;
+	}
+
+
+
 }

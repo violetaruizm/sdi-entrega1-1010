@@ -1,7 +1,6 @@
 package com.uniovi.entities;
 
-import java.util.HashSet;
-import java.util.Set;
+
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -10,7 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+
 
 import org.joda.time.LocalDateTime;
 
@@ -38,6 +37,7 @@ public class Sale {
     @ManyToOne
     private User buyer;
 
+    private boolean destacada;
    
 
     public Sale() {
@@ -133,5 +133,13 @@ public class Sale {
 	    return false;
 	return true;
     }
+
+	public boolean isDestacada() {
+		return destacada;
+	}
+
+	public void setDestacada(boolean destacada) {
+		this.destacada = destacada;
+	}
 
 }

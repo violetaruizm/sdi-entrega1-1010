@@ -28,6 +28,11 @@ public class AddSaleFormValidator implements Validator {
 	if (sale.getPrice() <= 0) {
 	    errors.rejectValue("price", "Error.price");
 	}
+	
+	if(sale.isDestacada() && sale.getOwner().getMoney()-20<0) {
+		 errors.rejectValue("destacada", "Error.destacada");
+		
+	}
 
     }
 

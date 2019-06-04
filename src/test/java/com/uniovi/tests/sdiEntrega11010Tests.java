@@ -38,7 +38,7 @@ public class sdiEntrega11010Tests {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     static String PathFirefox65 = "C:\\Program Files\\Mozilla Firefox\\firefox.exe";
-    static String Geckdriver022 = "C:\\Users\\Violeta\\Desktop\\SDI sesion 5 material\\PL-SDI-Sesión5-material\\geckodriver024win64.exe";
+    static String Geckdriver022 = "C:\\Users\\viole\\Documents\\SDI\\PL-SDI-Sesion5-material\\geckodriver024win64.exe";
     // En MACOSX (Debe ser la versión 65.0.1y desactivar las actualizacioens
     // automáticas):
     // staticString
@@ -1210,7 +1210,7 @@ public class sdiEntrega11010Tests {
 	driver.findElement(By.xpath("//*[contains(text(),'Login')]")).click();
 	driver.get("http://localhost:8090/user/list");
 	// Comprobamos que no está permitido
-	List<WebElement> list = driver.findElements(By.xpath("//*[contains(text(),'HTTP Status 403 – Forbidden')]"));
+	List<WebElement> list = driver.findElements(By.xpath("//*[contains(text(),'There was an unexpected error (type=Forbidden, status=403).')]"));
 	assertTrue(list.size() > 0);
     }
 

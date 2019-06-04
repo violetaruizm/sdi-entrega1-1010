@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,20 +51,23 @@ public class SalesController {
     }
 
     @PostMapping("/sale/add")
-    public String add(@Validated Sale sale, BindingResult result, Model model) {
-
+    public String add(@Validated Sale sale,BindingResult result, Model model) {
+    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    	String email = auth.getName();
+    	User activeUser = userService.getUser(email);
+    	sale.setOwner(activeUser);
 	addSaleFormValidator.validate(sale, result);
 	if (result.hasErrors()) {
 	    return "sale/add";
 	}
 	sale.setDate(new LocalDateTime());
 
-	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	String email = auth.getName();
-	User activeUser = userService.getUser(email);
+	if(sale.isDestacada()) {
+		activeUser.setMoney(activeUser.getMoney()-20);}
+	
 	sale.setValid(true);
 
-	sale.setOwner(activeUser);
+	
 	sale.setStatus(Status.ONSALE);
 	salesService.addSale(sale);
 
@@ -150,4 +154,19 @@ public class SalesController {
 
     }
 
+    @GetMapping("/sale/destacar/{id}")
+    public String destacarOferta(@PathVariable Long id,Principal principal) {
+    	String email = principal.getName();
+    	User user = userService.getUser(email);
+    	if (user != null) {
+    	    boolean sold = salesService.destacarOferta(id,user);
+    	    if (sold) {
+    		return "redirect:/sale/list?success";
+
+    	    }
+    	    }
+    	return "redirect:/sale/list?error";
+    	
+    	
+    }
 }

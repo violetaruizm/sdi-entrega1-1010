@@ -13,7 +13,7 @@ import com.uniovi.entities.types.Status;
 import com.uniovi.repositories.SalesRepository;
 import com.uniovi.repositories.UserRepository;
 
-//@Service
+@Service
 public class InsertDataService {
 
     @Autowired
@@ -105,6 +105,9 @@ public class InsertDataService {
 	    oferta1a.setStatus(Status.SOLD);
 	    oferta1b.setStatus(Status.SOLD);
 	    oferta1c.setStatus(Status.ONSALE);
+	    oferta1a.setDestacada(true);
+	    oferta1b.setDestacada(false);
+	    oferta1c.setDestacada(false);
 	    oferta1a.setPrice(10);
 	    oferta1b.setPrice(110);
 	    oferta1c.setPrice(50);
