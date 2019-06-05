@@ -16,6 +16,39 @@
 	 <b sec:authorize="isAuthenticated() && hasRole('ROLE_STANDARD')" th:inline="text" id=money th:text=${money1}> </b>
 		</p>
         </div>
+        
+       
+		<div class="table-responsive" sec:authorize="hasRole('ROLE_STANDARD')">
+
+			<table class="table table-hover">
+				<tr>
+					<th class="col-md-1" th:text="#{list.sale.title}"></th>
+					<th th:text="#{list.sale.description}"></th>
+					<th th:text="#{list.sale.price}"></th>
+					<th class="col-md-1"></th>
+					<th class="col-md-1"></th>
+					<th class="col-md-1"></th>
+				</tr>
+
+				</thead>
+				<tbody>
+					<tr th:each="sale : ${salesList}">
+						<td th:text="${sale.title}">1</td>
+						<td th:text="${sale.description}">Ejercicio 1</td>
+						<td th:text="${sale.price}">10</td>
+
+						<td>
+							<form method="get" th:attr="action=${'/sale/buy/' + sale.id}" th:if="${#strings.toString(sale.status)} == 'ONSALE' or ${#strings.toString(sale.status)} == 'HIGHLIGHTED'">
+								<input  type="submit" th:value="#{sale.buy}" name="${sale.title}"/>
+							</form> 
+							<span th:if="${#strings.toString(sale.status)} == 'SOLD'" th:text="#{sale.sold}">Vendida</span>
+						</td>
+
+					</tr>
+				</tbody>
+			</table>
+			
+		</div>
 	<footer th:replace="fragments/footer" />
 </body>
 </html>

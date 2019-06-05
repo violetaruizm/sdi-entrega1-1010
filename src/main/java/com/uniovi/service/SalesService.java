@@ -1,11 +1,9 @@
 package com.uniovi.service;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.Optional;
 
-import javax.servlet.http.HttpSession;
-
+import org.joda.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,8 +17,7 @@ import com.uniovi.repositories.SalesRepository;
 @Service
 public class SalesService {
 
-    @Autowired
-    private HttpSession httpSession;
+
 
     @Autowired
     private SalesRepository salesRepository;
@@ -41,24 +38,30 @@ public class SalesService {
 	return salesRepository.findAll();
 
     }
-
-    @SuppressWarnings("unchecked")
-    public Sale getSale(Long id) {
-	Set<Sale> consultedList = (Set<Sale>) httpSession.getAttribute("consultedList");
-
-	if (consultedList == null) {
-	    consultedList = new HashSet<Sale>();
-	}
-
-	Sale markObtained = salesRepository.findById(id).get();
-	consultedList.add(markObtained);
-	httpSession.setAttribute("consultedList", consultedList);
-	return markObtained;
-
+    
+    public Sale getSaleById(Long id) {
+    	Optional<Sale> optional = salesRepository.findById(id);
+    	if(optional.isPresent()) {
+    		return optional.get();
+    	}
+    	
+    	return null;
     }
 
-    public void addSale(Sale sale) {
+   
+    
+
+    public void addSale(Sale sale,User activeUser) {
 // Si en Id es null le asignamos el ultimo + 1 de la lista
+    	sale.setDate(new LocalDateTime());
+
+    	if(sale.isDestacada()) {
+    		activeUser.setMoney(activeUser.getMoney()-20);}
+    	
+    	sale.setValid(true);
+
+    	
+    	sale.setStatus(Status.ONSALE);
 
 	salesRepository.save(sale);
     }

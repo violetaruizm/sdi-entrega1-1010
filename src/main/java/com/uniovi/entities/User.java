@@ -47,8 +47,13 @@ public class User {
 
     @OneToMany(mappedBy = "buyer")
     private Set<Sale> boughtSales = new HashSet<Sale>();
+    
+    @OneToMany(mappedBy = "owner")
+    private Set<Conversacion> ownerConversaciones = new HashSet<Conversacion>();
 
-   
+    @OneToMany(mappedBy = "buyer")
+    private Set<Conversacion> buyerConversaciones = new HashSet<Conversacion>();
+
 
     public User() {
 

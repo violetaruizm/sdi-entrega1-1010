@@ -46,8 +46,12 @@ public class UsersService {
 
     public void addUser(User user) {
 	if (user.getPassword() != null) {
+		
 	    user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 	}
+	user.setRole(Role.ROLE_STANDARD);
+	user.setValid(true);
+	user.setMoney(100);
 	userRepository.save(user);
     }
 

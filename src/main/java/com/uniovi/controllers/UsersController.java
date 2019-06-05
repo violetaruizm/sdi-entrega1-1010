@@ -15,10 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.uniovi.entities.User;
-import com.uniovi.entities.types.Role;
 import com.uniovi.service.SecurityService;
 import com.uniovi.service.UsersService;
-
 import com.uniovi.validators.SignUpFormValidator;
 
 @Controller
@@ -45,9 +43,7 @@ public class UsersController {
 	if (result.hasErrors()) {
 	    return "signup";
 	}
-	user.setRole(Role.ROLE_STANDARD);
-	user.setValid(true);
-	user.setMoney(100);
+	
 	userService.addUser(user);
 	securityService.autoLogin(user.getEmail(), user.getPasswordConfirm());
 	return "redirect:home";

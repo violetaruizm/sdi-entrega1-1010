@@ -38,6 +38,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/user/**").hasAnyAuthority("ROLE_ADMIN")
 
 		.antMatchers("/sale/**").hasAuthority("ROLE_STANDARD").anyRequest().authenticated()
+		.antMatchers("/mensaje/**").hasAuthority("ROLE_STANDARD").anyRequest().authenticated()
+		.antMatchers("/conversacion/**").hasAuthority("ROLE_STANDARD").anyRequest().authenticated()
 
 		.and().formLogin().loginPage("/login").permitAll()
 

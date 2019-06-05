@@ -10,12 +10,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.uniovi.entities.User;
+import com.uniovi.repositories.SalesRepository;
 import com.uniovi.service.UsersService;
 
 @Controller
 public class HomeController {
     @Autowired
     private UsersService userService;
+    @Autowired
+    private SalesRepository salesRepository;
 	
 
 
@@ -39,6 +42,7 @@ public class HomeController {
 	model.addAttribute("email", activeUser.getEmail());
 	model.addAttribute("money", String.valueOf(activeUser.getMoney()));
 	model.addAttribute("money1", String.valueOf(activeUser.getMoney()));
+	model.addAttribute("salesList",salesRepository.findByDifferentOwnerAndHighlighted(activeUser.getId()));
 	return "home";
     }
 
