@@ -20,9 +20,18 @@ public class ConversacionService {
 			return conversacionRepository.findAll();}
 	 
 	 public Conversacion getConversacion(Sale sale,User buyer) {
-		 return conversacionRepository.findBySaleAndOwnerAndBuyer(buyer, sale.getOwner(), sale);
+		 return conversacionRepository.findBySaleAndOwnerAndBuyer(sale.getOwner().getId(),buyer.getId(), sale.getId());
 		 
 		 
 	 }
+
+	public Conversacion crearConversacion(Sale sale, User owner, User user) {
+		Conversacion conversacion = new Conversacion();
+		conversacion.setSale(sale);
+		conversacion.setOwner(owner);
+		conversacion.setBuyer(user);
+		conversacionRepository.save(conversacion);
+		return conversacion;
+	}
 
 }
