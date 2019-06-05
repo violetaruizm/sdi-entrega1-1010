@@ -1,15 +1,21 @@
 package com.uniovi.service;
 
+import java.util.Date;
+
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.uniovi.entities.Conversacion;
+import com.uniovi.entities.Mensaje;
 import com.uniovi.entities.Sale;
 import com.uniovi.entities.User;
 import com.uniovi.entities.types.Role;
 import com.uniovi.entities.types.Status;
+import com.uniovi.repositories.ConversacionRepository;
+import com.uniovi.repositories.MensajesRepository;
 import com.uniovi.repositories.SalesRepository;
 import com.uniovi.repositories.UserRepository;
 
@@ -17,10 +23,16 @@ import com.uniovi.repositories.UserRepository;
 public class InsertDataService {
 
     @Autowired
-    private UserRepository userService;
+    private UserRepository userRepo;
 
     @Autowired
-    private SalesRepository saleService;
+    private SalesRepository saleRepo;
+    
+    @Autowired
+    private MensajesRepository mensajesRepo;
+    
+    @Autowired
+    private ConversacionRepository conversacionRepo;
     
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -38,7 +50,7 @@ public class InsertDataService {
 	    admin.setName("Admin");
 	    admin.setSurname("Admin");
 	    admin.setValid(true);
-	    userService.save(admin);
+	    userRepo.save(admin);
 	    
 	    User user1 = new User();
 	    user1.setEmail("user1@email.com");
@@ -48,7 +60,7 @@ public class InsertDataService {
 	    user1.setSurname("user1");
 	    user1.setValid(true);
 	    user1.setMoney(100);
-	   userService.save(user1);
+	   userRepo.save(user1);
 	    
 	    User user2 = new User();
 	    user2.setEmail("user2@email.com");
@@ -58,7 +70,7 @@ public class InsertDataService {
 	    user2.setSurname("User2");
 	    user2.setValid(true);
 	    user2.setMoney(250);
-	    userService.save(user2);
+	    userRepo.save(user2);
 	    
 	    User user3 = new User();
 	    user3.setEmail("user3@email.com");
@@ -68,7 +80,7 @@ public class InsertDataService {
 	    user3.setSurname("User3");
 	    user3.setValid(true);
 	    user3.setMoney(80.95);
-	    userService.save(user3);
+	    userRepo.save(user3);
 	    
 	    User user4 = new User();
 	    user4.setEmail("user4@email.com");
@@ -78,7 +90,7 @@ public class InsertDataService {
 	    user4.setSurname("User4");
 	    user4.setValid(true);
 	    user4.setMoney(125.30);
-	    userService.save(user4);
+	    userRepo.save(user4);
 	    
 	    User user5 = new User();
 	    user5.setEmail("user5@email.com");
@@ -88,7 +100,7 @@ public class InsertDataService {
 	    user5.setValid(true);
 	    user5.setSurname("User5");
 	    user5.setMoney(50);
-	    userService.save(user5);
+	    userRepo.save(user5);
 	    
 	    
 	    //Ofertas de cada usuario
@@ -210,25 +222,47 @@ public class InsertDataService {
 	    oferta5a.setBuyer(user1);
 	    oferta5c.setBuyer(user2);
 	    
-	    saleService.save(oferta1a);
-	    saleService.save(oferta1b);
-	    saleService.save(oferta1c);
+	    saleRepo.save(oferta1a);
+	    saleRepo.save(oferta1b);
+	    saleRepo.save(oferta1c);
 	    
-	    saleService.save(oferta2a);
-	    saleService.save(oferta2b);
-	    saleService.save(oferta2c);
+	    saleRepo.save(oferta2a);
+	    saleRepo.save(oferta2b);
+	    saleRepo.save(oferta2c);
 	    
-	    saleService.save(oferta3a);
-	    saleService.save(oferta3b);
-	    saleService.save(oferta3c);
+	    saleRepo.save(oferta3a);
+	    saleRepo.save(oferta3b);
+	    saleRepo.save(oferta3c);
 	    
-	    saleService.save(oferta4a);
-	    saleService.save(oferta4b);
-	    saleService.save(oferta4c);
+	    saleRepo.save(oferta4a);
+	    saleRepo.save(oferta4b);
+	    saleRepo.save(oferta4c);
 	    
-	    saleService.save(oferta5a);
-	    saleService.save(oferta5b);
-	    saleService.save(oferta5c);
+	    saleRepo.save(oferta5a);
+	    saleRepo.save(oferta5b);
+	    saleRepo.save(oferta5c);
+	    
+	    Conversacion conversacion = new Conversacion();
+	    conversacion.setBuyer(user1);
+	    conversacion.setOwner(user2);
+	    conversacion.setSale(oferta2a);
+	    
+	    Mensaje mensaje1 = new Mensaje();
+	    mensaje1.setConversacion(conversacion);
+	    mensaje1.setContenido("kiss my ass goodbye");
+	    mensaje1.setEmisor(user1.getEmail());
+	    mensaje1.setFecha(new Date());
+	    
+	    Mensaje mensaje2 = new Mensaje();
+	    mensaje2.setConversacion(conversacion);
+	    mensaje2.setContenido("or you could sit and watch me cry");
+	    mensaje2.setEmisor(user2.getEmail());
+	    mensaje2.setFecha(new Date());
+	    conversacionRepo.save(conversacion);
+	    mensajesRepo.save(mensaje1);
+	    mensajesRepo.save(mensaje2);
+	    
+	    
     }
 
 }

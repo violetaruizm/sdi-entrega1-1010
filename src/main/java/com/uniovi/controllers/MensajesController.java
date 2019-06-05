@@ -61,7 +61,7 @@ public class MensajesController {
 		// mandar mensaje nuevo a la vista
 		// crear vista
 		model.addAttribute("mensajes", mensajes);
-		model.addAttribute("mensajeNuevo", new Mensaje());
+		model.addAttribute("mensaje", new Mensaje());
 		return "conversacion/conversacion";
 	}
 
