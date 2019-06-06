@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="fragments/head" />
+<body>
+	<!-- Barra de Navegaci�n superior -->
+	<nav th:replace="fragments/nav" />
+	<div class="container">
+		<h2>Tus conversaciones</h2>
+		<p>Estas son todas tus conversaciones abiertas</p>
+		<div class="table-responsive">
+		
+			
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Oferta</th>
+						<th>Propietario</th>
+						<th>Comprador</th>
+						<th class="col-md-1"></th>
+						
+						
+						
+						
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="conversacion : ${conversacionList}">
+					<td th:text="${conversacion.sale.title}"></td>
+						<td th:text="${conversacion.owner.email}"></td>
+						<td th:text="${conversacion.buyer.email}"></td>
+						<td>
+							<form method="get" th:attr="action=${'/conversacion/abrir/' + conversacion.sale.id}" >
+								<input  type="submit" value="Abrir" name="${sale.title}"/>
+							</form> 
+							
+							
+							
+						</td>
+						
+						
+						
+						
+						
+					</tr>
+				</tbody>
+			</table>
+			
+			
+			</form>
+			
+			<div th:if="${param.error}" class="alert alert-dismissible alert-success" th:text="#{delete.error}"></div>
+			<div th:if="${param.success}" class="alert alert-dismissible alert-success" th:text="#{delete.success}"></div>
+		</div>
+	</div>
+	<footer th:replace="fragments/footer" />
+</body>
+</html>

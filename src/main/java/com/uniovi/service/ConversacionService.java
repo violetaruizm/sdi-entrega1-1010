@@ -1,6 +1,7 @@
 package com.uniovi.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +32,20 @@ public class ConversacionService {
 		conversacion.setOwner(owner);
 		conversacion.setBuyer(user);
 		return conversacionRepository.save(conversacion);
+	}
+	
+	public List<Conversacion> encontrarConversacionesUsuario(User user){
+		
+		return conversacionRepository.getConversaciones(user.getEmail());
+	}
+	
+	public Conversacion getConversacionId(Long id) {
+		Optional<Conversacion> optional = conversacionRepository.findById(id);
+    	if(optional.isPresent()) {
+    		return optional.get();
+    	}
+    	
+    	return null;
 	}
 
 }

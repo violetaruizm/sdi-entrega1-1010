@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="fragments/head" />
+<body>
+
+	<!-- Barra de Navegaciï¿½n superior -->
+	<nav th:replace="fragments/nav" />
+
+
+
+	<div class="container">
+		<h2 >Conversacion</h2>
+		
+		
+
+
+		<p >Estos son los mensajes en la conversacion</p>
+
+		
+
+
+
+		<div class="table-responsive">
+
+			<table class="table table-hover">
+				<tr>
+					
+					<th >Fecha</th>
+					<th >Emisor</th>
+					<th >Mensaje</th>
+					
+				
+					
+					
+				</tr>
+
+				</thead>
+				<tbody>
+					<tr th:each="mensaje : ${mensajes}">
+						<td th:text="${mensaje.fecha}">1</td>
+						<td th:text="${mensaje.emisor}">Ejercicio 1</td>
+						<td th:text="${mensaje.contenido}">10</td>
+						</tr>
+				</tbody>
+			</table>
+			<div th:if="${param.error}" class="alert alert-dismissible alert-success" th:text="#{buy.error}"></div>
+			<div th:if="${param.success}" class="alert alert-dismissible alert-success" th:text="#{buy.sucess}"></div>
+		</div>
+		<form class="navbar-form" method="post"  th:attr="action=${'/mensaje/enviar/' + saleId}" th:object="${mensaje}">
+			<div class="form-group">
+				<input name="contenido" type="text" class="form-control" size="50"
+					placeholder="Tu mensaje acá">
+			</div>
+			<button type="submit" class="btn btn-default" name=send>Enviar</button>
+		</form>
+	</div>
+	<footer th:replace="fragments/footer" />
+</body>
+</html>
