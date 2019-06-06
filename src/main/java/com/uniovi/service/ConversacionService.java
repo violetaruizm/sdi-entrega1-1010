@@ -30,8 +30,7 @@ public class ConversacionService {
 		conversacion.setSale(sale);
 		conversacion.setOwner(owner);
 		conversacion.setBuyer(user);
-		conversacionRepository.save(conversacion);
-		return conversacion;
+		return conversacionRepository.save(conversacion);
 	}
 
 }

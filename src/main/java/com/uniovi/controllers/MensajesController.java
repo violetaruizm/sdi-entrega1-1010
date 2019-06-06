@@ -5,8 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,6 +23,7 @@ import com.uniovi.service.ConversacionService;
 import com.uniovi.service.MensajesService;
 import com.uniovi.service.SalesService;
 import com.uniovi.service.UsersService;
+import com.uniovi.validators.MensajesValidator;
 
 @Controller
 public class MensajesController {
@@ -34,6 +39,9 @@ public class MensajesController {
 
 	@Autowired
 	private ConversacionService conversacionService;
+	
+	@Autowired
+	private MensajesValidator mensajesValidator;
 
 	@RequestMapping(value = "/mensaje/enviar/{id}", method = RequestMethod.GET)
 	public String enviarMensaje(@PathVariable Long id, Model model, Principal principal) {
@@ -42,16 +50,17 @@ public class MensajesController {
 		Sale sale = saleService.getSaleById(id);
 		String email = principal.getName();
 		User user = userService.getUser(email);
+		
 		Conversacion conversacion = conversacionService.getConversacion(sale, user);
 		if (conversacion != null) {
+			
 			mensajes = mensajeService.getMensajesConversacion(conversacion);
 
 		} else {
-			Conversacion nueva = null;
-			nueva = conversacionService.crearConversacion(sale, sale.getOwner(), user);
+			Conversacion nueva = conversacionService.crearConversacion(sale, sale.getOwner(), user);
 			if (nueva != null) {
 				mensajes = new ArrayList<Mensaje>();
-
+				
 			} else {
 				return "redirect:/sale/all?error";
 			}
@@ -61,8 +70,28 @@ public class MensajesController {
 		// mandar mensaje nuevo a la vista
 		// crear vista
 		model.addAttribute("mensajes", mensajes);
+		model.addAttribute("saleId", id);
 		model.addAttribute("mensaje", new Mensaje());
 		return "conversacion/conversacion";
+	}
+	
+	@RequestMapping(value="/mensaje/enviar/{id}",method = RequestMethod.POST)
+	public String enviarMensaje(@PathVariable Long id,@Validated Mensaje mensaje,BindingResult result,Model model,Principal principal){
+		Sale sale = saleService.getSaleById(id);
+		String email = principal.getName();
+		User user = userService.getUser(email);
+		
+		Conversacion conversacion = conversacionService.getConversacion(sale, user);
+		
+		mensajesValidator.validate(mensaje, result);
+		if (!result.hasErrors()) {
+			
+			mensajeService.nuevoMensaje(mensaje, conversacion, user);
+			return "redirect:/mensaje/enviar/"+id;
+		}
+		
+		return "redirect:/mensaje/enviar/"+id;
+		
 	}
 
 }
