@@ -24,6 +24,8 @@ public class Conversacion {
 	@ManyToOne
 	private Sale sale;
 	
+	private boolean valid;
+	
 	@OneToMany(mappedBy = "conversacion")
 	private Set<Mensaje> mensajes = new HashSet<Mensaje>();
 
@@ -101,6 +103,14 @@ public class Conversacion {
 
 	public long getId() {
 		return id;
+	}
+
+	public boolean isValid() {
+		return valid;
+	}
+
+	public void setValid(boolean valid) {
+		this.valid = valid;
 	}
 
 }

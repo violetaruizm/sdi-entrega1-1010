@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.uniovi.entities.Conversacion;
 import com.uniovi.entities.Sale;
 import com.uniovi.entities.User;
+import com.uniovi.entities.types.Status;
 import com.uniovi.repositories.ConversacionRepository;
 
 @Service
@@ -31,6 +32,7 @@ public class ConversacionService {
 		conversacion.setSale(sale);
 		conversacion.setOwner(owner);
 		conversacion.setBuyer(user);
+		conversacion.setValid(true);
 		return conversacionRepository.save(conversacion);
 	}
 	
@@ -47,5 +49,13 @@ public class ConversacionService {
     	
     	return null;
 	}
+	
+    public boolean deleteConversacion(Long id) {
+	Conversacion conversacion = conversacionRepository.getOne(id);
+	conversacion.setValid(false);
+	
+	conversacionRepository.save(conversacion);
+	return true;
+    }
 
 }

@@ -246,6 +246,7 @@ public class InsertDataService {
 	    conversacion.setBuyer(user1);
 	    conversacion.setOwner(user2);
 	    conversacion.setSale(oferta2a);
+	    conversacion.setValid(true);
 	    
 	    Mensaje mensaje1 = new Mensaje();
 	    mensaje1.setConversacion(conversacion);

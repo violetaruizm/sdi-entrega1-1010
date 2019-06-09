@@ -11,8 +11,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.uniovi.entities.Conversacion;
 import com.uniovi.entities.Mensaje;
@@ -147,6 +149,22 @@ public class MensajesController {
 
 		return "redirect:/conversacion/abrir/" + id;
 		
+	}
+	
+	@RequestMapping(value="/conversacion/eliminar/{id}",method=RequestMethod.GET)
+	public String eliminarConversacion(@PathVariable Long id, Principal principal) {
+		String email = principal.getName();
+		User user = userService.getUser(email);
+		if (user != null) {
+			boolean sold = conversacionService.deleteConversacion(id);
+			if (sold) {
+				return "redirect:/conversaciones?success";
+
+			}
+
+		}
+		return "redirect:/conversaciones?error";
+
 	}
 
 }

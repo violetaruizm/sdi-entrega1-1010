@@ -17,6 +17,7 @@
 						<th>Propietario</th>
 						<th>Comprador</th>
 						<th class="col-md-1"></th>
+						<th class="col-md-1"></th>
 						
 						
 						
@@ -25,12 +26,21 @@
 				</thead>
 				<tbody>
 					<tr th:each="conversacion : ${conversacionList}">
+					
 					<td th:text="${conversacion.sale.title}"></td>
 						<td th:text="${conversacion.owner.email}"></td>
 						<td th:text="${conversacion.buyer.email}"></td>
 						<td>
 							<form method="get" th:attr="action=${'/conversacion/abrir/' + conversacion.id}" >
-								<input  type="submit" value="Abrir" name="${sale.title}"/>
+								<input  type="submit" value="Abrir" name="${conversacion.sale.title}"/>
+							</form> 
+							
+							
+							
+						</td>
+						<td>
+							<form method="get" th:attr="action=${'/conversacion/eliminar/' + conversacion.id}" >
+								<input  type="submit" value="Eliminar" name="${conversacion.title}"/>
 							</form> 
 							
 							
