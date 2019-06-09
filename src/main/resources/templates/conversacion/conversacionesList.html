@@ -29,7 +29,7 @@
 						<td th:text="${conversacion.owner.email}"></td>
 						<td th:text="${conversacion.buyer.email}"></td>
 						<td>
-							<form method="get" th:attr="action=${'/conversacion/abrir/' + conversacion.sale.id}" >
+							<form method="get" th:attr="action=${'/conversacion/abrir/' + conversacion.id}" >
 								<input  type="submit" value="Abrir" name="${sale.title}"/>
 							</form> 
 							

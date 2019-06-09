@@ -125,9 +125,28 @@ public class MensajesController {
 		// mandar mensaje nuevo a la vista
 		// crear vista
 		model.addAttribute("mensajes", mensajes);
-		model.addAttribute("saleId", id);
+		model.addAttribute("conversacionId", id);
 		model.addAttribute("mensaje", new Mensaje());
 		return "conversacion/conversacionDesdeListado";
+	}
+
+	@RequestMapping(value ="/conversacion/enviar/{id}",method=RequestMethod.POST)
+	public String nuevoMensaje(@PathVariable Long id,@Validated Mensaje mensaje,BindingResult result,Model model,Principal principal) {
+		Sale sale = saleService.getSaleById(id);
+		String email = principal.getName();
+		User user = userService.getUser(email);
+
+		Conversacion conversacion = conversacionService.getConversacionId(id);
+
+		mensajesValidator.validate(mensaje, result);
+		if (!result.hasErrors()) {
+
+			mensajeService.nuevoMensaje(mensaje, conversacion, user);
+			return "redirect:/conversacion/abrir/" + id;
+		}
+
+		return "redirect:/conversacion/abrir/" + id;
+		
 	}
 
 }
