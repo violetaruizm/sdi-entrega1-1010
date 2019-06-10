@@ -73,6 +73,7 @@ public class MensajesController {
 		model.addAttribute("mensajes", mensajes);
 		model.addAttribute("saleId", id);
 		model.addAttribute("mensaje", new Mensaje());
+		model.addAttribute("money", String.valueOf(user.getMoney()));
 		return "conversacion/conversacion";
 	}
 
@@ -100,11 +101,14 @@ public class MensajesController {
 	public String verConversaciones(Principal principal, Model model) {
 		String email = principal.getName();
 		User user = userService.getUser(email);
+		
 		if (user != null) {
 			List<Conversacion> conversaciones = conversacionService.encontrarConversacionesUsuario(user);
 			model.addAttribute("conversacionList", conversaciones);
-
+			
 		}
+		model.addAttribute("money", String.valueOf(user.getMoney()));
+
 		return "conversacion/conversacionesList";
 	}
 
@@ -112,6 +116,8 @@ public class MensajesController {
 	public String enviarMensajeDesdeListado(@PathVariable Long id, Model model, Principal principal) {
 		model.addAttribute("user", new User());
 		List<Mensaje> mensajes;
+		String email = principal.getName();
+		User user = userService.getUser(email);
 		Conversacion conversacion = conversacionService.getConversacionId(id);
 		if (conversacion != null) {
 
@@ -129,12 +135,14 @@ public class MensajesController {
 		model.addAttribute("mensajes", mensajes);
 		model.addAttribute("conversacionId", id);
 		model.addAttribute("mensaje", new Mensaje());
+		model.addAttribute("money", String.valueOf(user.getMoney()));
+
 		return "conversacion/conversacionDesdeListado";
 	}
 
 	@RequestMapping(value ="/conversacion/enviar/{id}",method=RequestMethod.POST)
 	public String nuevoMensaje(@PathVariable Long id,@Validated Mensaje mensaje,BindingResult result,Model model,Principal principal) {
-		Sale sale = saleService.getSaleById(id);
+		
 		String email = principal.getName();
 		User user = userService.getUser(email);
 

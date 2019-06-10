@@ -23,7 +23,7 @@ public interface SalesRepository extends JpaRepository<Sale, Long> {
     @Query("SELECT r FROM Sale r " + "WHERE r.owner.id!=?1 " + "AND r.status!='OUT'")
     Page<Sale> findByDifferentOwner(Long email, Pageable pageable);
     
-    @Query("SELECT r FROM Sale r " + "WHERE r.owner.id!=?1 " + "AND r.status!='OUT' and r.destacada=true")
+    @Query("SELECT r FROM Sale r " + "WHERE r.owner.id!=?1 " + "AND r.status!='OUT' and r.destacada=true and r.valid=true")
     List<Sale> findByDifferentOwnerAndHighlighted(Long email);
    
    

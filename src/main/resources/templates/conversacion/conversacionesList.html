@@ -32,7 +32,7 @@
 						<td th:text="${conversacion.buyer.email}"></td>
 						<td>
 							<form method="get" th:attr="action=${'/conversacion/abrir/' + conversacion.id}" >
-								<input  type="submit" value="Abrir" name="${conversacion.sale.title}"/>
+								<input  type="submit" th:value="#{abrir.boton}" name="${conversacion.sale.title}"/>
 							</form> 
 							
 							

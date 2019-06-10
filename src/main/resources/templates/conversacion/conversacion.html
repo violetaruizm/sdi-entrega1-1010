@@ -9,14 +9,14 @@
 
 
 	<div class="container">
-		<h2 >Conversacion</h2>
-		
-		
+		<h2 th:text="#{conversacion.titulo}">Conversacion</h2>
 
 
-		<p >Estos son los mensajes en la conversacion</p>
 
-		
+
+		<p th:text="#{conversacion.descripcion}">Estos son los mensajes en la conversacion</p>
+
+
 
 
 
@@ -24,14 +24,14 @@
 
 			<table class="table table-hover">
 				<tr>
-					
-					<th >Fecha</th>
-					<th >Emisor</th>
-					<th >Mensaje</th>
-					
-				
-					
-					
+
+					<th th:text="#{mensaje.fecha}">Fecha</th>
+					<th th:text="#{mensaje.emisor}">Emisor</th>
+					<th th:text="#{mensaje.texto}">Mensaje</th>
+
+
+
+
 				</tr>
 
 				</thead>
@@ -40,18 +40,23 @@
 						<td th:text="${mensaje.fecha}">1</td>
 						<td th:text="${mensaje.emisor}">Ejercicio 1</td>
 						<td th:text="${mensaje.contenido}">10</td>
-						</tr>
+					</tr>
 				</tbody>
 			</table>
-			<div th:if="${param.error}" class="alert alert-dismissible alert-success" th:text="#{buy.error}"></div>
-			<div th:if="${param.success}" class="alert alert-dismissible alert-success" th:text="#{buy.sucess}"></div>
+			<div th:if="${param.error}"
+				class="alert alert-dismissible alert-success" th:text="#{delete.error}"></div>
+			<div th:if="${param.success}"
+				class="alert alert-dismissible alert-success"
+				th:text="#{delete.sucess}"></div>
 		</div>
-		<form class="navbar-form" method="post"  th:attr="action=${'/mensaje/enviar/' + saleId}" th:object="${mensaje}">
+		<form class="navbar-form" method="post"
+			th:attr="action=${'/mensaje/enviar/' + saleId}"
+			th:object="${mensaje}">
 			<div class="form-group">
 				<input name="contenido" type="text" class="form-control" size="50"
-					placeholder="Tu mensaje acá">
+					th:placeholder="#{enviar.placeholder}">
 			</div>
-			<button type="submit" class="btn btn-default" name=send>Enviar</button>
+			<button type="submit" class="btn btn-default" th:value="#{enviar.boton}"name=send>Enviar</button>
 		</form>
 	</div>
 	<footer th:replace="fragments/footer" />
