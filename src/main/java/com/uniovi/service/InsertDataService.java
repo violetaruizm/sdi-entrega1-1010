@@ -250,13 +250,13 @@ public class InsertDataService {
 	    
 	    Mensaje mensaje1 = new Mensaje();
 	    mensaje1.setConversacion(conversacion);
-	    mensaje1.setContenido("kiss my ass goodbye");
+	    mensaje1.setContenido("mensaje1");
 	    mensaje1.setEmisor(user1.getEmail());
 	    mensaje1.setFecha(new Date());
 	    
 	    Mensaje mensaje2 = new Mensaje();
 	    mensaje2.setConversacion(conversacion);
-	    mensaje2.setContenido("or you could sit and watch me cry");
+	    mensaje2.setContenido("mensaje2");
 	    mensaje2.setEmisor(user2.getEmail());
 	    mensaje2.setFecha(new Date());
 	    conversacionRepo.save(conversacion);

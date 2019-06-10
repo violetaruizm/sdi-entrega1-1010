@@ -52,7 +52,7 @@
 							<span th:if="${#strings.toString(sale.status)} == 'SOLD'" th:text="#{sale.sold}">Vendida</span>
 						</td>
 						<td>
-						<a th:text="#{list.sale.enviarMensaje}" th:attr="href=${'/mensaje/enviar/' + sale.id}"></a>
+						<a th:text="#{list.sale.enviarMensaje}" th:attr="href=${'/mensaje/enviar/' + sale.id}" th:id="${sale.id}"></a>
 						</td>
 
 					</tr>
