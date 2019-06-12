@@ -4,6 +4,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.junit.Before;
 import org.junit.FixMethodOrder;
@@ -1280,7 +1281,8 @@ public class sdiEntrega11010Tests {
 			driver.findElement(By.xpath("//*[contains(text(),'Login')]")).click();
 		    driver.findElement(By.linkText("Ofertas")).click();
 		    driver.findElement(By.linkText("Buscar ofertas")).click();
-		    driver.findElement(By.id("4")).click();
+		  
+		   driver.findElement(By.id("Oferta 2a")).click();
 		 // El mensaje aparece
 			List<WebElement> list = driver.findElements(By.xpath("//*[contains(text(),'mensaje1')]"));
 			assertTrue(list.size() > 0);
@@ -1293,6 +1295,8 @@ public class sdiEntrega11010Tests {
 		    driver.findElement(By.name("send")).click();
 		    list = driver.findElements(By.xpath("//*[contains(text(),'mensaje3')]"));
 			assertTrue(list.size() > 0);
+			
+			//Abrir la conversacion desde el listado de conversaciones
 		    driver.findElement(By.linkText("Conversaciones")).click();
 		    driver.findElement(By.id("Oferta 2auser1@email.com")).click();
 		    //Aparecen todos los mensajes
