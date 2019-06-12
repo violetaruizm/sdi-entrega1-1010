@@ -148,6 +148,9 @@ public class sdiEntrega11010Tests {
 		oferta1a.setTitle("Oferta 1a");
 		oferta1b.setTitle("Oferta 1b");
 		oferta1c.setTitle("Oferta 1c");
+		oferta1a.setDescription("Oferta 1a");
+		oferta1b.setDescription("Oferta 1b");
+		oferta1c.setDescription("Oferta 1c");
 		oferta1a.setValid(true);
 		oferta1b.setValid(true);
 		oferta1c.setValid(true);
@@ -168,6 +171,9 @@ public class sdiEntrega11010Tests {
 		oferta2a.setTitle("Oferta 2a");
 		oferta2b.setTitle("Oferta 2b");
 		oferta2c.setTitle("Oferta 2c");
+		oferta2a.setDescription("Oferta 2a");
+		oferta2b.setDescription("Oferta 2b");
+		oferta2c.setDescription("Oferta 2c");
 		oferta2a.setOwner(user2);
 		oferta2b.setOwner(user2);
 		oferta2c.setOwner(user2);
@@ -187,6 +193,9 @@ public class sdiEntrega11010Tests {
 		oferta3a.setTitle("Oferta 3a");
 		oferta3b.setTitle("Oferta 3b");
 		oferta3c.setTitle("Oferta 3c");
+		oferta3a.setDescription("Oferta 3a");
+		oferta3b.setDescription("Oferta 3b");
+		oferta3c.setDescription("Oferta 3c");
 		oferta3a.setOwner(user3);
 		oferta3b.setOwner(user3);
 		oferta3c.setOwner(user3);
@@ -206,6 +215,9 @@ public class sdiEntrega11010Tests {
 		oferta4a.setTitle("Oferta 4a");
 		oferta4b.setTitle("Oferta 4b");
 		oferta4c.setTitle("Oferta 4c");
+		oferta4a.setDescription("Oferta 4a");
+		oferta4b.setDescription("Oferta 4b");
+		oferta4c.setDescription("Oferta 4c");
 		oferta4a.setOwner(user4);
 		oferta4b.setOwner(user4);
 		oferta4c.setOwner(user4);
@@ -226,6 +238,9 @@ public class sdiEntrega11010Tests {
 		oferta5a.setTitle("Oferta 5a");
 		oferta5b.setTitle("Oferta 5b");
 		oferta5c.setTitle("Oferta 5c");
+		oferta5a.setDescription("Oferta 5a");
+		oferta5b.setDescription("Oferta 5b");
+		oferta5c.setDescription("Oferta 5c");
 		oferta5a.setOwner(user5);
 		oferta5b.setOwner(user5);
 		oferta5c.setOwner(user5);
@@ -294,6 +309,70 @@ public class sdiEntrega11010Tests {
 	    conversacionRepo.save(conversacion);
 	    mensajesRepo.save(mensaje1);
 	    mensajesRepo.save(mensaje2);
+	    
+	    Conversacion conversacion1 = new Conversacion();
+	    conversacion1.setBuyer(user1);
+	    conversacion1.setOwner(user3);
+	    conversacion1.setSale(oferta3b);
+	    conversacion1.setValid(true);
+	    
+	    Mensaje mensaje1a = new Mensaje();
+	    mensaje1a.setConversacion(conversacion1);
+	    mensaje1a.setContenido("mensaje1a");
+	    mensaje1a.setEmisor(user1.getEmail());
+	    mensaje1a.setFecha(new Date());
+	    
+	    Mensaje mensaje2a = new Mensaje();
+	    mensaje2.setConversacion(conversacion);
+	    mensaje2.setContenido("mensaje2a");
+	    mensaje2.setEmisor(user3.getEmail());
+	    mensaje2.setFecha(new Date());
+	    conversacionRepo.save(conversacion1);
+	    mensajesRepo.save(mensaje1a);
+	    mensajesRepo.save(mensaje2a);
+	    
+	    
+	    Conversacion conversacion2 = new Conversacion();
+	    conversacion2.setBuyer(user1);
+	    conversacion2.setOwner(user4);
+	    conversacion2.setSale(oferta4c);
+	    conversacion2.setValid(true);
+	    
+	    Mensaje mensaje1b = new Mensaje();
+	    mensaje1b.setConversacion(conversacion2);
+	    mensaje1b.setContenido("mensaje1b");
+	    mensaje1b.setEmisor(user1.getEmail());
+	    mensaje1b.setFecha(new Date());
+	    
+	    Mensaje mensaje2b = new Mensaje();
+	    mensaje2b.setConversacion(conversacion2);
+	    mensaje2b.setContenido("mensaje2b");
+	    mensaje2b.setEmisor(user4.getEmail());
+	    mensaje2b.setFecha(new Date());
+	    conversacionRepo.save(conversacion2);
+	    mensajesRepo.save(mensaje1b);
+	    mensajesRepo.save(mensaje2b);
+	    
+	    Conversacion conversacion3 = new Conversacion();
+	    conversacion3.setBuyer(user1);
+	    conversacion3.setOwner(user5);
+	    conversacion3.setSale(oferta5c);
+	    conversacion3.setValid(true);
+	    
+	    Mensaje mensaje1c = new Mensaje();
+	    mensaje1c.setConversacion(conversacion3);
+	    mensaje1c.setContenido("mensaje1c");
+	    mensaje1c.setEmisor(user1.getEmail());
+	    mensaje1c.setFecha(new Date());
+	    
+	    Mensaje mensaje2c = new Mensaje();
+	    mensaje2c.setConversacion(conversacion3);
+	    mensaje2c.setContenido("mensaje2c");
+	    mensaje2c.setEmisor(user5.getEmail());
+	    mensaje2c.setFecha(new Date());
+	    conversacionRepo.save(conversacion3);
+	    mensajesRepo.save(mensaje1c);
+	    mensajesRepo.save(mensaje2c);
 
 	}
 
@@ -1310,5 +1389,32 @@ public class sdiEntrega11010Tests {
 			
 		    driver.findElement(By.linkText("Desconectar")).click();
 	}
+	
+	  @Test
+	  public void testP33()  {
+		  driver.get("http://localhost:8090/login");
+			driver.findElement(By.name("username")).click();
+			driver.findElement(By.name("username")).clear();
+			driver.findElement(By.name("username")).sendKeys("user1@email.com");
+			driver.findElement(By.name("password")).click();
+			driver.findElement(By.name("password")).clear();
+			driver.findElement(By.name("password")).sendKeys("12345");
+			// El usuario se autentifica
+			driver.findElement(By.xpath("//*[contains(text(),'Login')]")).click();
+			//Abrir la conversacion desde el listado de conversaciones
+		    driver.findElement(By.linkText("Conversaciones")).click();
+		   //Comprobamos que parecen las 4 conversaciones del usuario 1== aparecen los cuatro botones de abrir
+		    List<WebElement> list = driver.findElements(By.id("Oferta 2auser1@email.com"));
+			assertTrue(list.size() > 0);
+			list = driver.findElements(By.id("Oferta 3buser1@email.com"));
+			assertTrue(list.size() > 0);
+			list = driver.findElements(By.id("Oferta 4cuser1@email.com"));
+			assertTrue(list.size() > 0);
+			list = driver.findElements(By.id("Oferta 5cuser1@email.com"));
+			assertTrue(list.size() > 0);
+			
+	  
+		    driver.findElement(By.linkText("Desconectar")).click();
+	  }
 
 }

@@ -263,6 +263,70 @@ public class InsertDataService {
 	    mensajesRepo.save(mensaje1);
 	    mensajesRepo.save(mensaje2);
 	    
+	    Conversacion conversacion1 = new Conversacion();
+	    conversacion1.setBuyer(user1);
+	    conversacion1.setOwner(user3);
+	    conversacion1.setSale(oferta3b);
+	    conversacion1.setValid(true);
+	    
+	    Mensaje mensaje1a = new Mensaje();
+	    mensaje1a.setConversacion(conversacion1);
+	    mensaje1a.setContenido("mensaje1a");
+	    mensaje1a.setEmisor(user1.getEmail());
+	    mensaje1a.setFecha(new Date());
+	    
+	    Mensaje mensaje2a = new Mensaje();
+	    mensaje2.setConversacion(conversacion);
+	    mensaje2.setContenido("mensaje2a");
+	    mensaje2.setEmisor(user3.getEmail());
+	    mensaje2.setFecha(new Date());
+	    conversacionRepo.save(conversacion1);
+	    mensajesRepo.save(mensaje1a);
+	    mensajesRepo.save(mensaje2a);
+	    
+	    
+	    Conversacion conversacion2 = new Conversacion();
+	    conversacion2.setBuyer(user1);
+	    conversacion2.setOwner(user4);
+	    conversacion2.setSale(oferta4c);
+	    conversacion2.setValid(true);
+	    
+	    Mensaje mensaje1b = new Mensaje();
+	    mensaje1b.setConversacion(conversacion2);
+	    mensaje1b.setContenido("mensaje1b");
+	    mensaje1b.setEmisor(user1.getEmail());
+	    mensaje1b.setFecha(new Date());
+	    
+	    Mensaje mensaje2b = new Mensaje();
+	    mensaje2b.setConversacion(conversacion2);
+	    mensaje2b.setContenido("mensaje2b");
+	    mensaje2b.setEmisor(user4.getEmail());
+	    mensaje2b.setFecha(new Date());
+	    conversacionRepo.save(conversacion2);
+	    mensajesRepo.save(mensaje1b);
+	    mensajesRepo.save(mensaje2b);
+	    
+	    Conversacion conversacion3 = new Conversacion();
+	    conversacion3.setBuyer(user1);
+	    conversacion3.setOwner(user5);
+	    conversacion3.setSale(oferta5c);
+	    conversacion3.setValid(true);
+	    
+	    Mensaje mensaje1c = new Mensaje();
+	    mensaje1c.setConversacion(conversacion3);
+	    mensaje1c.setContenido("mensaje1c");
+	    mensaje1c.setEmisor(user1.getEmail());
+	    mensaje1c.setFecha(new Date());
+	    
+	    Mensaje mensaje2c = new Mensaje();
+	    mensaje2c.setConversacion(conversacion3);
+	    mensaje2c.setContenido("mensaje2c");
+	    mensaje2c.setEmisor(user5.getEmail());
+	    mensaje2c.setFecha(new Date());
+	    conversacionRepo.save(conversacion3);
+	    mensajesRepo.save(mensaje1c);
+	    mensajesRepo.save(mensaje2c);
+	    
 	    
     }
 
