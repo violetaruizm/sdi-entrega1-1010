@@ -40,7 +40,7 @@
 						</td>
 						<td>
 							<form method="get" th:attr="action=${'/conversacion/eliminar/' + conversacion.id}" >
-								<input  type="submit" value="Eliminar" name="${conversacion.title}"/>
+								<input  type="submit" value="Eliminar" name="${conversacion.title}" th:attr="id=${conversacion.sale.title+conversacion.buyer.email+conversacion.owner.email}"/>
 							</form> 
 							
 							

@@ -937,7 +937,7 @@ public class sdiEntrega11010Tests {
 		list = driver.findElements(By.xpath("//*[contains(text(),'Oferta 1a')]"));
 		assertTrue(list.size() == 0);
 		// Mensaje de borrado correcto
-		list = driver.findElements(By.xpath("//*[contains(text(),'La oferta fue borrada correctamente')]"));
+		list = driver.findElements(By.xpath("//*[contains(text(),'La operación se realizó correcamente')]"));
 		assertTrue(list.size() > 0);
 		// El usuario se desconecta
 		driver.findElement(By.xpath("//*[contains(text(),'Desconectar')]")).click();
@@ -970,7 +970,7 @@ public class sdiEntrega11010Tests {
 		list = driver.findElements(By.xpath("//*[contains(text(),'Oferta 1c')]"));
 		assertTrue(list.size() == 0);
 		// Mensaje de borrado correcto
-		list = driver.findElements(By.xpath("//*[contains(text(),'La oferta fue borrada correctamente')]"));
+		list = driver.findElements(By.xpath("//*[contains(text(),'La operación se realizó correcamente')]"));
 		assertTrue(list.size() > 0);
 
 		// El usuario se desconecta
@@ -1412,6 +1412,92 @@ public class sdiEntrega11010Tests {
 			assertTrue(list.size() > 0);
 			list = driver.findElements(By.id("Oferta 5cuser1@email.com"));
 			assertTrue(list.size() > 0);
+			
+	  
+		    driver.findElement(By.linkText("Desconectar")).click();
+	  }
+	  
+	  
+
+	  @Test
+	  public void testP34()  {
+		  driver.get("http://localhost:8090/login");
+			driver.findElement(By.name("username")).click();
+			driver.findElement(By.name("username")).clear();
+			driver.findElement(By.name("username")).sendKeys("user1@email.com");
+			driver.findElement(By.name("password")).click();
+			driver.findElement(By.name("password")).clear();
+			driver.findElement(By.name("password")).sendKeys("12345");
+			// El usuario se autentifica
+			driver.findElement(By.xpath("//*[contains(text(),'Login')]")).click();
+			//Abrir la conversacion desde el listado de conversaciones
+		    driver.findElement(By.linkText("Conversaciones")).click();
+		   //Comprobamos que aparecen todas las conversaciones
+		    List<WebElement> list = driver.findElements(By.id("Oferta 2auser1@email.com"));
+			assertTrue(list.size() > 0);
+			list = driver.findElements(By.id("Oferta 3buser1@email.com"));
+			assertTrue(list.size() > 0);
+			list = driver.findElements(By.id("Oferta 4cuser1@email.com"));
+			assertTrue(list.size() > 0);
+			list = driver.findElements(By.id("Oferta 5cuser1@email.com"));
+			assertTrue(list.size() > 0);
+			//borramos la primera
+			driver.findElement(By.id("Oferta 2auser1@email.comuser2@email.com")).click();
+			//mensaje de operación correcta
+			list = driver.findElements(By.xpath("//*[contains(text(),'La operación se realizó correcamente')]"));
+			assertTrue(list.size() > 0);
+			//comprobamos que se ha borrado correctamente
+			list = driver.findElements(By.id("Oferta 2auser1@email.com"));
+			assertTrue(list.size() == 0);
+			//el resto de conversaciones siguen apareciendo
+			list = driver.findElements(By.id("Oferta 3buser1@email.com"));
+			assertTrue(list.size() > 0);
+			list = driver.findElements(By.id("Oferta 4cuser1@email.com"));
+			assertTrue(list.size() > 0);
+			list = driver.findElements(By.id("Oferta 5cuser1@email.com"));
+			assertTrue(list.size() > 0);
+			
+	  
+		    driver.findElement(By.linkText("Desconectar")).click();
+	  }
+	  
+	  @Test
+	  public void testP35()  {
+		  driver.get("http://localhost:8090/login");
+			driver.findElement(By.name("username")).click();
+			driver.findElement(By.name("username")).clear();
+			driver.findElement(By.name("username")).sendKeys("user1@email.com");
+			driver.findElement(By.name("password")).click();
+			driver.findElement(By.name("password")).clear();
+			driver.findElement(By.name("password")).sendKeys("12345");
+			// El usuario se autentifica
+			driver.findElement(By.xpath("//*[contains(text(),'Login')]")).click();
+			//Abrir la conversacion desde el listado de conversaciones
+		    driver.findElement(By.linkText("Conversaciones")).click();
+		   //Comprobamos que aparecen todas las conversaciones
+		    List<WebElement> list = driver.findElements(By.id("Oferta 2auser1@email.com"));
+			assertTrue(list.size() > 0);
+			list = driver.findElements(By.id("Oferta 3buser1@email.com"));
+			assertTrue(list.size() > 0);
+			list = driver.findElements(By.id("Oferta 4cuser1@email.com"));
+			assertTrue(list.size() > 0);
+			list = driver.findElements(By.id("Oferta 5cuser1@email.com"));
+			assertTrue(list.size() > 0);
+			//borramos la última oferta
+			driver.findElement(By.id("Oferta 5cuser1@email.comuser5@email.com")).click();
+			//Mensaje de operación correcta
+			list = driver.findElements(By.xpath("//*[contains(text(),'La operación se realizó correcamente')]"));
+			assertTrue(list.size() > 0);
+			//comprobamos que se ha borrado correctamente
+			list = driver.findElements(By.id("Oferta 2auser1@email.com"));
+			assertTrue(list.size() > 0);
+			//el resto de conversaciones siguen apareciendo
+			list = driver.findElements(By.id("Oferta 3buser1@email.com"));
+			assertTrue(list.size() > 0);
+			list = driver.findElements(By.id("Oferta 4cuser1@email.com"));
+			assertTrue(list.size() > 0);
+			list = driver.findElements(By.id("Oferta 5cuser1@email.com"));
+			assertTrue(list.size() ==0);
 			
 	  
 		    driver.findElement(By.linkText("Desconectar")).click();
