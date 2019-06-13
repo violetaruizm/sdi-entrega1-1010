@@ -51,7 +51,7 @@
 					
 						<td>
 							<form method="get" th:attr="action=${'/sale/delete/' + sale.id}">
-								<input  type="submit" th:value="#{sale.delete}" />
+								<input  type="submit" th:value="#{sale.delete}" th:attr="id=${sale.title+sale.owner.email}" />
 							</form> 
 							
 						</td>
