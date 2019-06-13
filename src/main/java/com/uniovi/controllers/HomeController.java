@@ -1,5 +1,7 @@
 package com.uniovi.controllers;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,35 +17,43 @@ import com.uniovi.service.UsersService;
 
 @Controller
 public class HomeController {
-    @Autowired
-    private UsersService userService;
-    @Autowired
-    private SalesRepository salesRepository;
-	
+	@Autowired
+	private UsersService userService;
+	@Autowired
+	private SalesRepository salesRepository;
 
+	@GetMapping("/")
+	public String index(Principal principal) {
 
-    @GetMapping("/")
-    public String index() {
-        return "redirect:/login";
-    }
-
-
-    @RequestMapping(value = { "/home" }, method = RequestMethod.GET)
-    public String home(Model model) {
-
-	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	String email = auth.getName();
-	User activeUser = userService.getUser(email);
-	if (!activeUser.isValid()) {
-	    SecurityContextHolder.clearContext();
-	    return "redirect:/login?error";
+		if (principal !=null) {
+			String email = principal.getName();
+			User user = userService.getUser(email);
+			if (user == null) {
+				return "redirect:/login";
+			} else {
+				return "redirect:/home";
+			}
+		} else {
+			return "redirect:/login";
+		}
 	}
 
-	model.addAttribute("email", activeUser.getEmail());
-	model.addAttribute("money", String.valueOf(activeUser.getMoney()));
-	model.addAttribute("money1", String.valueOf(activeUser.getMoney()));
-	model.addAttribute("salesList",salesRepository.findByDifferentOwnerAndHighlighted(activeUser.getId()));
-	return "home";
-    }
+	@RequestMapping(value = { "/home" }, method = RequestMethod.GET)
+	public String home(Model model) {
+
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String email = auth.getName();
+		User activeUser = userService.getUser(email);
+		if (!activeUser.isValid()) {
+			SecurityContextHolder.clearContext();
+			return "redirect:/login?error";
+		}
+
+		model.addAttribute("email", activeUser.getEmail());
+		model.addAttribute("money", String.valueOf(activeUser.getMoney()));
+		model.addAttribute("money1", String.valueOf(activeUser.getMoney()));
+		model.addAttribute("salesList", salesRepository.findByDifferentOwnerAndHighlighted(activeUser.getId()));
+		return "home";
+	}
 
 }
