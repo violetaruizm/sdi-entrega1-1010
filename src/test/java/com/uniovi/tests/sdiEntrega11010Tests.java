@@ -41,10 +41,10 @@ public class sdiEntrega11010Tests {
 
 	@Autowired
 	private SalesRepository salesRepository;
-	
+
 	@Autowired
 	private MensajesRepository mensajesRepo;
-	
+
 	@Autowired
 	private ConversacionRepository conversacionRepo;
 
@@ -137,7 +137,7 @@ public class sdiEntrega11010Tests {
 		user5.setName("User5");
 		user5.setValid(true);
 		user5.setSurname("User5");
-		user5.setMoney(50);
+		user5.setMoney(10);
 		userRepository.save(user5);
 
 		// Ofertas de cada usuario
@@ -288,91 +288,90 @@ public class sdiEntrega11010Tests {
 		salesRepository.save(oferta5a);
 		salesRepository.save(oferta5b);
 		salesRepository.save(oferta5c);
-		
-	    Conversacion conversacion = new Conversacion();
-	    conversacion.setBuyer(user1);
-	    conversacion.setOwner(user2);
-	    conversacion.setSale(oferta2a);
-	    conversacion.setValid(true);
-	    
-	    Mensaje mensaje1 = new Mensaje();
-	    mensaje1.setConversacion(conversacion);
-	    mensaje1.setContenido("mensaje1");
-	    mensaje1.setEmisor(user1.getEmail());
-	    mensaje1.setFecha(new Date());
-	    
-	    Mensaje mensaje2 = new Mensaje();
-	    mensaje2.setConversacion(conversacion);
-	    mensaje2.setContenido("mensaje2");
-	    mensaje2.setEmisor(user2.getEmail());
-	    mensaje2.setFecha(new Date());
-	    conversacionRepo.save(conversacion);
-	    mensajesRepo.save(mensaje1);
-	    mensajesRepo.save(mensaje2);
-	    
-	    Conversacion conversacion1 = new Conversacion();
-	    conversacion1.setBuyer(user1);
-	    conversacion1.setOwner(user3);
-	    conversacion1.setSale(oferta3b);
-	    conversacion1.setValid(true);
-	    
-	    Mensaje mensaje1a = new Mensaje();
-	    mensaje1a.setConversacion(conversacion1);
-	    mensaje1a.setContenido("mensaje1a");
-	    mensaje1a.setEmisor(user1.getEmail());
-	    mensaje1a.setFecha(new Date());
-	    
-	    Mensaje mensaje2a = new Mensaje();
-	    mensaje2.setConversacion(conversacion);
-	    mensaje2.setContenido("mensaje2a");
-	    mensaje2.setEmisor(user3.getEmail());
-	    mensaje2.setFecha(new Date());
-	    conversacionRepo.save(conversacion1);
-	    mensajesRepo.save(mensaje1a);
-	    mensajesRepo.save(mensaje2a);
-	    
-	    
-	    Conversacion conversacion2 = new Conversacion();
-	    conversacion2.setBuyer(user1);
-	    conversacion2.setOwner(user4);
-	    conversacion2.setSale(oferta4c);
-	    conversacion2.setValid(true);
-	    
-	    Mensaje mensaje1b = new Mensaje();
-	    mensaje1b.setConversacion(conversacion2);
-	    mensaje1b.setContenido("mensaje1b");
-	    mensaje1b.setEmisor(user1.getEmail());
-	    mensaje1b.setFecha(new Date());
-	    
-	    Mensaje mensaje2b = new Mensaje();
-	    mensaje2b.setConversacion(conversacion2);
-	    mensaje2b.setContenido("mensaje2b");
-	    mensaje2b.setEmisor(user4.getEmail());
-	    mensaje2b.setFecha(new Date());
-	    conversacionRepo.save(conversacion2);
-	    mensajesRepo.save(mensaje1b);
-	    mensajesRepo.save(mensaje2b);
-	    
-	    Conversacion conversacion3 = new Conversacion();
-	    conversacion3.setBuyer(user1);
-	    conversacion3.setOwner(user5);
-	    conversacion3.setSale(oferta5c);
-	    conversacion3.setValid(true);
-	    
-	    Mensaje mensaje1c = new Mensaje();
-	    mensaje1c.setConversacion(conversacion3);
-	    mensaje1c.setContenido("mensaje1c");
-	    mensaje1c.setEmisor(user1.getEmail());
-	    mensaje1c.setFecha(new Date());
-	    
-	    Mensaje mensaje2c = new Mensaje();
-	    mensaje2c.setConversacion(conversacion3);
-	    mensaje2c.setContenido("mensaje2c");
-	    mensaje2c.setEmisor(user5.getEmail());
-	    mensaje2c.setFecha(new Date());
-	    conversacionRepo.save(conversacion3);
-	    mensajesRepo.save(mensaje1c);
-	    mensajesRepo.save(mensaje2c);
+
+		Conversacion conversacion = new Conversacion();
+		conversacion.setBuyer(user1);
+		conversacion.setOwner(user2);
+		conversacion.setSale(oferta2a);
+		conversacion.setValid(true);
+
+		Mensaje mensaje1 = new Mensaje();
+		mensaje1.setConversacion(conversacion);
+		mensaje1.setContenido("mensaje1");
+		mensaje1.setEmisor(user1.getEmail());
+		mensaje1.setFecha(new Date());
+
+		Mensaje mensaje2 = new Mensaje();
+		mensaje2.setConversacion(conversacion);
+		mensaje2.setContenido("mensaje2");
+		mensaje2.setEmisor(user2.getEmail());
+		mensaje2.setFecha(new Date());
+		conversacionRepo.save(conversacion);
+		mensajesRepo.save(mensaje1);
+		mensajesRepo.save(mensaje2);
+
+		Conversacion conversacion1 = new Conversacion();
+		conversacion1.setBuyer(user1);
+		conversacion1.setOwner(user3);
+		conversacion1.setSale(oferta3b);
+		conversacion1.setValid(true);
+
+		Mensaje mensaje1a = new Mensaje();
+		mensaje1a.setConversacion(conversacion1);
+		mensaje1a.setContenido("mensaje1a");
+		mensaje1a.setEmisor(user1.getEmail());
+		mensaje1a.setFecha(new Date());
+
+		Mensaje mensaje2a = new Mensaje();
+		mensaje2.setConversacion(conversacion);
+		mensaje2.setContenido("mensaje2a");
+		mensaje2.setEmisor(user3.getEmail());
+		mensaje2.setFecha(new Date());
+		conversacionRepo.save(conversacion1);
+		mensajesRepo.save(mensaje1a);
+		mensajesRepo.save(mensaje2a);
+
+		Conversacion conversacion2 = new Conversacion();
+		conversacion2.setBuyer(user1);
+		conversacion2.setOwner(user4);
+		conversacion2.setSale(oferta4c);
+		conversacion2.setValid(true);
+
+		Mensaje mensaje1b = new Mensaje();
+		mensaje1b.setConversacion(conversacion2);
+		mensaje1b.setContenido("mensaje1b");
+		mensaje1b.setEmisor(user1.getEmail());
+		mensaje1b.setFecha(new Date());
+
+		Mensaje mensaje2b = new Mensaje();
+		mensaje2b.setConversacion(conversacion2);
+		mensaje2b.setContenido("mensaje2b");
+		mensaje2b.setEmisor(user4.getEmail());
+		mensaje2b.setFecha(new Date());
+		conversacionRepo.save(conversacion2);
+		mensajesRepo.save(mensaje1b);
+		mensajesRepo.save(mensaje2b);
+
+		Conversacion conversacion3 = new Conversacion();
+		conversacion3.setBuyer(user1);
+		conversacion3.setOwner(user5);
+		conversacion3.setSale(oferta5c);
+		conversacion3.setValid(true);
+
+		Mensaje mensaje1c = new Mensaje();
+		mensaje1c.setConversacion(conversacion3);
+		mensaje1c.setContenido("mensaje1c");
+		mensaje1c.setEmisor(user1.getEmail());
+		mensaje1c.setFecha(new Date());
+
+		Mensaje mensaje2c = new Mensaje();
+		mensaje2c.setConversacion(conversacion3);
+		mensaje2c.setContenido("mensaje2c");
+		mensaje2c.setEmisor(user5.getEmail());
+		mensaje2c.setFecha(new Date());
+		conversacionRepo.save(conversacion3);
+		mensajesRepo.save(mensaje1c);
+		mensajesRepo.save(mensaje2c);
 
 	}
 
@@ -1340,167 +1339,290 @@ public class sdiEntrega11010Tests {
 		// Aparece la conversacion con user4@email.com
 		list = driver.findElements(By.xpath("//*[contains(text(),'Nuevo mensaje')]"));
 		assertTrue(list.size() > 0);
-		
+
 		// Aparece el mensaje al abrirla
 		list = driver.findElements(By.xpath("//*[contains(text(),'Nuevo mensaje')]"));
 		assertTrue(list.size() > 0);
 		driver.findElement(By.linkText("Desconectar")).click();
 	}
-	
+
 	@Test
 	public void testP32() {
-		   driver.get("http://localhost:8090/login");
-			driver.findElement(By.name("username")).click();
-			driver.findElement(By.name("username")).clear();
-			driver.findElement(By.name("username")).sendKeys("user1@email.com");
-			driver.findElement(By.name("password")).click();
-			driver.findElement(By.name("password")).clear();
-			driver.findElement(By.name("password")).sendKeys("12345");
-			// El usuario se autentifica
-			driver.findElement(By.xpath("//*[contains(text(),'Login')]")).click();
-		    driver.findElement(By.linkText("Ofertas")).click();
-		    driver.findElement(By.linkText("Buscar ofertas")).click();
-		  
-		   driver.findElement(By.id("Oferta 2a")).click();
-		 // El mensaje aparece
-			List<WebElement> list = driver.findElements(By.xpath("//*[contains(text(),'mensaje1')]"));
-			assertTrue(list.size() > 0);
-			// El mensaje aparece
-			list = driver.findElements(By.xpath("//*[contains(text(),'mensaje2')]"));
-			assertTrue(list.size() > 0);
-		    driver.findElement(By.name("contenido")).click();
-		    driver.findElement(By.name("contenido")).clear();
-		    driver.findElement(By.name("contenido")).sendKeys("mensaje3");
-		    driver.findElement(By.name("send")).click();
-		    list = driver.findElements(By.xpath("//*[contains(text(),'mensaje3')]"));
-			assertTrue(list.size() > 0);
-			
-			//Abrir la conversacion desde el listado de conversaciones
-		    driver.findElement(By.linkText("Conversaciones")).click();
-		    driver.findElement(By.id("Oferta 2auser1@email.com")).click();
-		    //Aparecen todos los mensajes
-		    list = driver.findElements(By.xpath("//*[contains(text(),'mensaje1')]"));
-			assertTrue(list.size() > 0);
-			
-			list = driver.findElements(By.xpath("//*[contains(text(),'mensaje2')]"));
-			assertTrue(list.size() > 0);
-			 list = driver.findElements(By.xpath("//*[contains(text(),'mensaje3')]"));
-				assertTrue(list.size() > 0);
-			
-		    driver.findElement(By.linkText("Desconectar")).click();
+		driver.get("http://localhost:8090/login");
+		driver.findElement(By.name("username")).click();
+		driver.findElement(By.name("username")).clear();
+		driver.findElement(By.name("username")).sendKeys("user1@email.com");
+		driver.findElement(By.name("password")).click();
+		driver.findElement(By.name("password")).clear();
+		driver.findElement(By.name("password")).sendKeys("12345");
+		// El usuario se autentifica
+		driver.findElement(By.xpath("//*[contains(text(),'Login')]")).click();
+		driver.findElement(By.linkText("Ofertas")).click();
+		driver.findElement(By.linkText("Buscar ofertas")).click();
+
+		driver.findElement(By.id("Oferta 2a")).click();
+		// El mensaje aparece
+		List<WebElement> list = driver.findElements(By.xpath("//*[contains(text(),'mensaje1')]"));
+		assertTrue(list.size() > 0);
+		// El mensaje aparece
+		list = driver.findElements(By.xpath("//*[contains(text(),'mensaje2')]"));
+		assertTrue(list.size() > 0);
+		driver.findElement(By.name("contenido")).click();
+		driver.findElement(By.name("contenido")).clear();
+		driver.findElement(By.name("contenido")).sendKeys("mensaje3");
+		driver.findElement(By.name("send")).click();
+		list = driver.findElements(By.xpath("//*[contains(text(),'mensaje3')]"));
+		assertTrue(list.size() > 0);
+
+		// Abrir la conversacion desde el listado de conversaciones
+		driver.findElement(By.linkText("Conversaciones")).click();
+		driver.findElement(By.id("Oferta 2auser1@email.com")).click();
+		// Aparecen todos los mensajes
+		list = driver.findElements(By.xpath("//*[contains(text(),'mensaje1')]"));
+		assertTrue(list.size() > 0);
+
+		list = driver.findElements(By.xpath("//*[contains(text(),'mensaje2')]"));
+		assertTrue(list.size() > 0);
+		list = driver.findElements(By.xpath("//*[contains(text(),'mensaje3')]"));
+		assertTrue(list.size() > 0);
+
+		driver.findElement(By.linkText("Desconectar")).click();
+	}
+
+	@Test
+	public void testP33() {
+		driver.get("http://localhost:8090/login");
+		driver.findElement(By.name("username")).click();
+		driver.findElement(By.name("username")).clear();
+		driver.findElement(By.name("username")).sendKeys("user1@email.com");
+		driver.findElement(By.name("password")).click();
+		driver.findElement(By.name("password")).clear();
+		driver.findElement(By.name("password")).sendKeys("12345");
+		// El usuario se autentifica
+		driver.findElement(By.xpath("//*[contains(text(),'Login')]")).click();
+		// Abrir la conversacion desde el listado de conversaciones
+		driver.findElement(By.linkText("Conversaciones")).click();
+		// Comprobamos que parecen las 4 conversaciones del usuario 1== aparecen los
+		// cuatro botones de abrir
+		List<WebElement> list = driver.findElements(By.id("Oferta 2auser1@email.com"));
+		assertTrue(list.size() > 0);
+		list = driver.findElements(By.id("Oferta 3buser1@email.com"));
+		assertTrue(list.size() > 0);
+		list = driver.findElements(By.id("Oferta 4cuser1@email.com"));
+		assertTrue(list.size() > 0);
+		list = driver.findElements(By.id("Oferta 5cuser1@email.com"));
+		assertTrue(list.size() > 0);
+
+		driver.findElement(By.linkText("Desconectar")).click();
+	}
+
+	@Test
+	public void testP34() {
+		driver.get("http://localhost:8090/login");
+		driver.findElement(By.name("username")).click();
+		driver.findElement(By.name("username")).clear();
+		driver.findElement(By.name("username")).sendKeys("user1@email.com");
+		driver.findElement(By.name("password")).click();
+		driver.findElement(By.name("password")).clear();
+		driver.findElement(By.name("password")).sendKeys("12345");
+		// El usuario se autentifica
+		driver.findElement(By.xpath("//*[contains(text(),'Login')]")).click();
+		// Abrir la conversacion desde el listado de conversaciones
+		driver.findElement(By.linkText("Conversaciones")).click();
+		// Comprobamos que aparecen todas las conversaciones
+		List<WebElement> list = driver.findElements(By.id("Oferta 2auser1@email.com"));
+		assertTrue(list.size() > 0);
+		list = driver.findElements(By.id("Oferta 3buser1@email.com"));
+		assertTrue(list.size() > 0);
+		list = driver.findElements(By.id("Oferta 4cuser1@email.com"));
+		assertTrue(list.size() > 0);
+		list = driver.findElements(By.id("Oferta 5cuser1@email.com"));
+		assertTrue(list.size() > 0);
+		// borramos la primera
+		driver.findElement(By.id("Oferta 2auser1@email.comuser2@email.com")).click();
+		// mensaje de operación correcta
+		list = driver.findElements(By.xpath("//*[contains(text(),'La operación se realizó correcamente')]"));
+		assertTrue(list.size() > 0);
+		// comprobamos que se ha borrado correctamente
+		list = driver.findElements(By.id("Oferta 2auser1@email.com"));
+		assertTrue(list.size() == 0);
+		// el resto de conversaciones siguen apareciendo
+		list = driver.findElements(By.id("Oferta 3buser1@email.com"));
+		assertTrue(list.size() > 0);
+		list = driver.findElements(By.id("Oferta 4cuser1@email.com"));
+		assertTrue(list.size() > 0);
+		list = driver.findElements(By.id("Oferta 5cuser1@email.com"));
+		assertTrue(list.size() > 0);
+
+		driver.findElement(By.linkText("Desconectar")).click();
+	}
+
+	@Test
+	public void testP35() {
+		driver.get("http://localhost:8090/login");
+		driver.findElement(By.name("username")).click();
+		driver.findElement(By.name("username")).clear();
+		driver.findElement(By.name("username")).sendKeys("user1@email.com");
+		driver.findElement(By.name("password")).click();
+		driver.findElement(By.name("password")).clear();
+		driver.findElement(By.name("password")).sendKeys("12345");
+		// El usuario se autentifica
+		driver.findElement(By.xpath("//*[contains(text(),'Login')]")).click();
+		// Abrir la conversacion desde el listado de conversaciones
+		driver.findElement(By.linkText("Conversaciones")).click();
+		// Comprobamos que aparecen todas las conversaciones
+		List<WebElement> list = driver.findElements(By.id("Oferta 2auser1@email.com"));
+		assertTrue(list.size() > 0);
+		list = driver.findElements(By.id("Oferta 3buser1@email.com"));
+		assertTrue(list.size() > 0);
+		list = driver.findElements(By.id("Oferta 4cuser1@email.com"));
+		assertTrue(list.size() > 0);
+		list = driver.findElements(By.id("Oferta 5cuser1@email.com"));
+		assertTrue(list.size() > 0);
+		// borramos la última oferta
+		driver.findElement(By.id("Oferta 5cuser1@email.comuser5@email.com")).click();
+		// Mensaje de operación correcta
+		list = driver.findElements(By.xpath("//*[contains(text(),'La operación se realizó correcamente')]"));
+		assertTrue(list.size() > 0);
+		// comprobamos que se ha borrado correctamente
+		list = driver.findElements(By.id("Oferta 2auser1@email.com"));
+		assertTrue(list.size() > 0);
+		// el resto de conversaciones siguen apareciendo
+		list = driver.findElements(By.id("Oferta 3buser1@email.com"));
+		assertTrue(list.size() > 0);
+		list = driver.findElements(By.id("Oferta 4cuser1@email.com"));
+		assertTrue(list.size() > 0);
+		list = driver.findElements(By.id("Oferta 5cuser1@email.com"));
+		assertTrue(list.size() == 0);
+
+		driver.findElement(By.linkText("Desconectar")).click();
+	}
+
+	@Test
+	public void testP36() {
+		driver.get("http://localhost:8090/login");
+		driver.findElement(By.name("username")).click();
+		driver.findElement(By.name("username")).clear();
+		driver.findElement(By.name("username")).sendKeys("user1@email.com");
+		driver.findElement(By.name("password")).click();
+		driver.findElement(By.name("password")).clear();
+		driver.findElement(By.name("password")).sendKeys("12345");
+		// El usuario se autentifica
+		driver.findElement(By.xpath("//*[contains(text(),'Login')]")).click();
+		driver.findElement(By.linkText("Home")).click();
+
+		List<WebElement> list = driver.findElements(By.xpath("//*[contains(text(),'100.0')]"));
+		assertTrue(list.size() > 0);
+		driver.findElement(By.linkText("Ofertas")).click();
+		driver.findElement(By.linkText("Nueva oferta")).click();
+		driver.findElement(By.name("title")).click();
+		driver.findElement(By.name("title")).clear();
+		driver.findElement(By.name("title")).sendKeys("Oferta nueva");
+		driver.findElement(By.name("description")).clear();
+		driver.findElement(By.name("description")).sendKeys("Oferta nueva");
+		driver.findElement(By.name("price")).clear();
+		driver.findElement(By.name("price")).sendKeys("1");
+		driver.findElement(By.name("price")).clear();
+		driver.findElement(By.name("price")).sendKeys("1");
+
+		driver.findElement(By.name("price")).clear();
+		driver.findElement(By.name("price")).sendKeys("2");
+		driver.findElement(By.name("price")).clear();
+		driver.findElement(By.name("price")).sendKeys("2");
+
+		driver.findElement(By.name("price")).clear();
+		driver.findElement(By.name("price")).sendKeys("3");
+
+		driver.findElement(By.name("price")).clear();
+		driver.findElement(By.name("price")).sendKeys("4");
+
+		driver.findElement(By.name("price")).clear();
+		driver.findElement(By.name("price")).sendKeys("5");
+		driver.findElement(By.id("destacar")).click();
+		driver.findElement(By.id("publicar")).click();
+
+		// se publicó la oferta
+		list = driver.findElements(By.xpath("//*[contains(text(),'Oferta nueva')]"));
+		assertTrue(list.size() > 0);
+		driver.findElement(By.linkText("Home")).click();
+
+		list = driver.findElements(By.xpath("//*[contains(text(),'80.0')]"));
+		assertTrue(list.size() > 0);
+		driver.findElement(By.linkText("Desconectar")).click();
+	}
+
+	@Test
+	public void testP37() {
+		driver.get("http://localhost:8090/login");
+		driver.findElement(By.name("username")).click();
+		driver.findElement(By.name("username")).clear();
+		driver.findElement(By.name("username")).sendKeys("user1@email.com");
+		driver.findElement(By.name("password")).click();
+		driver.findElement(By.name("password")).clear();
+		driver.findElement(By.name("password")).sendKeys("12345");
+		// El usuario se autentifica
+		driver.findElement(By.xpath("//*[contains(text(),'Login')]")).click();
+		List<WebElement> list = driver.findElements(By.xpath("//*[contains(text(),'100.0')]"));
+		assertTrue(list.size() > 0);
+		driver.findElement(By.linkText("Personal")).click();
+		driver.findElement(By.linkText("Ofertas publicadas")).click();
+		driver.findElement(By.id("Oferta 1c")).click();
+		// mensaje de operación correcta
+		list = driver.findElements(By.xpath("//*[contains(text(),'La operación se realizó correcamente')]"));
+		assertTrue(list.size() > 0);
+		driver.findElement(By.linkText("Home")).click();
+		// El dinero se actualiza
+		list = driver.findElements(By.xpath("//*[contains(text(),'80.0')]"));
+		assertTrue(list.size() > 0);
+		driver.findElement(By.linkText("Desconectar")).click();
+		driver.findElement(By.name("username")).click();
+		driver.findElement(By.name("username")).clear();
+		driver.findElement(By.name("username")).sendKeys("user2@email.com");
+		driver.findElement(By.name("password")).click();
+		driver.findElement(By.name("password")).clear();
+		driver.findElement(By.name("password")).sendKeys("12345");
+		driver.findElement(By.xpath("//*[contains(text(),'Login')]")).click();
+		// la oferta aparece en las destacadas de los demás usuarios
+		list = driver.findElements(By.xpath("//*[contains(text(),'Oferta 1c')]"));
+		assertTrue(list.size() > 0);
+		driver.findElement(By.linkText("Desconectar")).click();
 	}
 	
-	  @Test
-	  public void testP33()  {
-		  driver.get("http://localhost:8090/login");
-			driver.findElement(By.name("username")).click();
-			driver.findElement(By.name("username")).clear();
-			driver.findElement(By.name("username")).sendKeys("user1@email.com");
-			driver.findElement(By.name("password")).click();
-			driver.findElement(By.name("password")).clear();
-			driver.findElement(By.name("password")).sendKeys("12345");
-			// El usuario se autentifica
-			driver.findElement(By.xpath("//*[contains(text(),'Login')]")).click();
-			//Abrir la conversacion desde el listado de conversaciones
-		    driver.findElement(By.linkText("Conversaciones")).click();
-		   //Comprobamos que parecen las 4 conversaciones del usuario 1== aparecen los cuatro botones de abrir
-		    List<WebElement> list = driver.findElements(By.id("Oferta 2auser1@email.com"));
-			assertTrue(list.size() > 0);
-			list = driver.findElements(By.id("Oferta 3buser1@email.com"));
-			assertTrue(list.size() > 0);
-			list = driver.findElements(By.id("Oferta 4cuser1@email.com"));
-			assertTrue(list.size() > 0);
-			list = driver.findElements(By.id("Oferta 5cuser1@email.com"));
-			assertTrue(list.size() > 0);
-			
-	  
-		    driver.findElement(By.linkText("Desconectar")).click();
-	  }
-	  
-	  
-
-	  @Test
-	  public void testP34()  {
-		  driver.get("http://localhost:8090/login");
-			driver.findElement(By.name("username")).click();
-			driver.findElement(By.name("username")).clear();
-			driver.findElement(By.name("username")).sendKeys("user1@email.com");
-			driver.findElement(By.name("password")).click();
-			driver.findElement(By.name("password")).clear();
-			driver.findElement(By.name("password")).sendKeys("12345");
-			// El usuario se autentifica
-			driver.findElement(By.xpath("//*[contains(text(),'Login')]")).click();
-			//Abrir la conversacion desde el listado de conversaciones
-		    driver.findElement(By.linkText("Conversaciones")).click();
-		   //Comprobamos que aparecen todas las conversaciones
-		    List<WebElement> list = driver.findElements(By.id("Oferta 2auser1@email.com"));
-			assertTrue(list.size() > 0);
-			list = driver.findElements(By.id("Oferta 3buser1@email.com"));
-			assertTrue(list.size() > 0);
-			list = driver.findElements(By.id("Oferta 4cuser1@email.com"));
-			assertTrue(list.size() > 0);
-			list = driver.findElements(By.id("Oferta 5cuser1@email.com"));
-			assertTrue(list.size() > 0);
-			//borramos la primera
-			driver.findElement(By.id("Oferta 2auser1@email.comuser2@email.com")).click();
-			//mensaje de operación correcta
-			list = driver.findElements(By.xpath("//*[contains(text(),'La operación se realizó correcamente')]"));
-			assertTrue(list.size() > 0);
-			//comprobamos que se ha borrado correctamente
-			list = driver.findElements(By.id("Oferta 2auser1@email.com"));
-			assertTrue(list.size() == 0);
-			//el resto de conversaciones siguen apareciendo
-			list = driver.findElements(By.id("Oferta 3buser1@email.com"));
-			assertTrue(list.size() > 0);
-			list = driver.findElements(By.id("Oferta 4cuser1@email.com"));
-			assertTrue(list.size() > 0);
-			list = driver.findElements(By.id("Oferta 5cuser1@email.com"));
-			assertTrue(list.size() > 0);
-			
-	  
-		    driver.findElement(By.linkText("Desconectar")).click();
-	  }
-	  
-	  @Test
-	  public void testP35()  {
-		  driver.get("http://localhost:8090/login");
-			driver.findElement(By.name("username")).click();
-			driver.findElement(By.name("username")).clear();
-			driver.findElement(By.name("username")).sendKeys("user1@email.com");
-			driver.findElement(By.name("password")).click();
-			driver.findElement(By.name("password")).clear();
-			driver.findElement(By.name("password")).sendKeys("12345");
-			// El usuario se autentifica
-			driver.findElement(By.xpath("//*[contains(text(),'Login')]")).click();
-			//Abrir la conversacion desde el listado de conversaciones
-		    driver.findElement(By.linkText("Conversaciones")).click();
-		   //Comprobamos que aparecen todas las conversaciones
-		    List<WebElement> list = driver.findElements(By.id("Oferta 2auser1@email.com"));
-			assertTrue(list.size() > 0);
-			list = driver.findElements(By.id("Oferta 3buser1@email.com"));
-			assertTrue(list.size() > 0);
-			list = driver.findElements(By.id("Oferta 4cuser1@email.com"));
-			assertTrue(list.size() > 0);
-			list = driver.findElements(By.id("Oferta 5cuser1@email.com"));
-			assertTrue(list.size() > 0);
-			//borramos la última oferta
-			driver.findElement(By.id("Oferta 5cuser1@email.comuser5@email.com")).click();
-			//Mensaje de operación correcta
-			list = driver.findElements(By.xpath("//*[contains(text(),'La operación se realizó correcamente')]"));
-			assertTrue(list.size() > 0);
-			//comprobamos que se ha borrado correctamente
-			list = driver.findElements(By.id("Oferta 2auser1@email.com"));
-			assertTrue(list.size() > 0);
-			//el resto de conversaciones siguen apareciendo
-			list = driver.findElements(By.id("Oferta 3buser1@email.com"));
-			assertTrue(list.size() > 0);
-			list = driver.findElements(By.id("Oferta 4cuser1@email.com"));
-			assertTrue(list.size() > 0);
-			list = driver.findElements(By.id("Oferta 5cuser1@email.com"));
-			assertTrue(list.size() ==0);
-			
-	  
-		    driver.findElement(By.linkText("Desconectar")).click();
-	  }
+	@Test
+	public void testP38() {
+		driver.get("http://localhost:8090/login");
+		driver.findElement(By.name("username")).click();
+		driver.findElement(By.name("username")).clear();
+		driver.findElement(By.name("username")).sendKeys("user5@email.com");
+		driver.findElement(By.name("password")).click();
+		driver.findElement(By.name("password")).clear();
+		driver.findElement(By.name("password")).sendKeys("12345");
+		// El usuario se autentifica
+		driver.findElement(By.xpath("//*[contains(text(),'Login')]")).click();
+		List<WebElement> list = driver.findElements(By.xpath("//*[contains(text(),'10.0')]"));
+		assertTrue(list.size() > 0);
+		driver.findElement(By.linkText("Personal")).click();
+		driver.findElement(By.linkText("Ofertas publicadas")).click();
+		driver.findElement(By.id("Oferta 5b")).click();
+		// mensaje de operación correcta
+		list = driver.findElements(By.xpath("//*[contains(text(),'No se pudo completar la operación')]"));
+		assertTrue(list.size() > 0);
+		driver.findElement(By.linkText("Home")).click();
+		// El dinero no se actualiza
+		list = driver.findElements(By.xpath("//*[contains(text(),'10.0')]"));
+		assertTrue(list.size() > 0);
+		driver.findElement(By.linkText("Desconectar")).click();
+		driver.findElement(By.name("username")).click();
+		driver.findElement(By.name("username")).clear();
+		driver.findElement(By.name("username")).sendKeys("user2@email.com");
+		driver.findElement(By.name("password")).click();
+		driver.findElement(By.name("password")).clear();
+		driver.findElement(By.name("password")).sendKeys("12345");
+		driver.findElement(By.xpath("//*[contains(text(),'Login')]")).click();
+		// la oferta no aparece en las destacadas de los demás usuarios
+		list = driver.findElements(By.xpath("//*[contains(text(),'Oferta 5c')]"));
+		assertTrue(list.size() == 0);
+		driver.findElement(By.linkText("Desconectar")).click();
+	}
 
 }
