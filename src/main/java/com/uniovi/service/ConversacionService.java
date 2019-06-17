@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.uniovi.entities.Conversacion;
 import com.uniovi.entities.Sale;
 import com.uniovi.entities.User;
-import com.uniovi.entities.types.Status;
+
 import com.uniovi.repositories.ConversacionRepository;
 
 @Service
