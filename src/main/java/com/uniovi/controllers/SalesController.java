@@ -116,12 +116,12 @@ public class SalesController {
 		if (user != null) {
 			boolean sold = salesService.buySale(id, user);
 			if (sold) {
-				return "redirect:/sale/all?success";
+				return "redirect:/sale/bought?success";
 
 			}
 
 		}
-		return "redirect:/sale/all?error";
+		return "redirect:/sale/bought?error";
 
 	}
 

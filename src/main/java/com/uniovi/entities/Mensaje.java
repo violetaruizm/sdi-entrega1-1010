@@ -19,7 +19,7 @@ public class Mensaje {
 	private Conversacion conversacion;
 	private String contenido;
 	private Date fecha;
-	private boolean leido;
+	
 	private String emisor;
 	@Override
 	public int hashCode() {
@@ -65,12 +65,7 @@ public class Mensaje {
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
-	public boolean isLeido() {
-		return leido;
-	}
-	public void setLeido(boolean leido) {
-		this.leido = leido;
-	}
+
 	public String getEmisor() {
 		return emisor;
 	}

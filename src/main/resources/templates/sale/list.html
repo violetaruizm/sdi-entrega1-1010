@@ -29,14 +29,7 @@
 						<td th:text="${sale.title}"></td>
 						<td th:text="${sale.description}"></td>
 						<td th:text="${sale.price}"></td>
-						<td>
-							<form method="get" th:attr="action=${'/sale/destacar/' + sale.id}" th:if="${#strings.toString(sale.status)} == 'ONSALE' and ${!sale.destacada}">
-								<input  type="submit" th:value="#{sale.destacarOferta}" name="${sale.title}" th:attr="id=${sale.title}"/>
-							</form> 
-							<span th:if="${sale.destacada}" th:text="#{sale.destacada}" >Destacada</span>
-							
-							
-						</td>
+					
 						
 						
 						
@@ -47,6 +40,16 @@
 								
 							</span> 
 							<span th:if="${#strings.toString(sale.status)} == 'SOLD'" th:text="#{sale.sold}">Vendida</span>
+						</td>
+						
+							<td>
+							<form method="get" th:attr="action=${'/sale/destacar/' + sale.id}" th:if="${#strings.toString(sale.status)} == 'ONSALE' and ${!sale.destacada}">
+								<input  type="submit" th:value="#{sale.destacarOferta}" name="${sale.title}" th:attr="id=${sale.title}"/>
+							</form> 
+							<span th:if="${sale.destacada}" th:text="#{sale.destacada}" >Destacada</span>
+							<span th:if="${!sale.destacada} and ${#strings.toString(sale.status)} == 'SOLD'" th:text="#{sale.nodestacada}" >Sin destacar</span>
+							
+							
 						</td>
 					
 						<td>
